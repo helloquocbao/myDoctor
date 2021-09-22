@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DoctorQBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BacSi">
+    <Key>
+      <PropertyRef Name="idbs" />
+    </Key>
+    <Property Name="idbs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="passbs" Type="varchar" MaxLength="50" />
+    <Property Name="tenbs" Type="nvarchar" MaxLength="50" />
+    <Property Name="sdt" Type="char" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="motabs" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="benhAn">
+    <Key>
+      <PropertyRef Name="idba" />
+    </Key>
+    <Property Name="idba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idkh" Type="int" />
+    <Property Name="urlanh" Type="varchar" MaxLength="300" />
+    <Property Name="mota" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="DatLich">
+    <Key>
+      <PropertyRef Name="iddl" />
+    </Key>
+    <Property Name="iddl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idbs" Type="int" />
+    <Property Name="idkh" Type="int" />
+    <Property Name="ngaydat" Type="datetime" />
+  </EntityType>
+  <EntityType Name="KetQuaKham">
+    <Key>
+      <PropertyRef Name="idkq" />
+    </Key>
+    <Property Name="idkq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iddl" Type="int" />
+    <Property Name="ketqua" Type="nvarchar" MaxLength="300" />
+    <Property Name="hdthuoc" Type="nvarchar" MaxLength="300" />
+    <Property Name="tienkham" Type="int" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="idkh" />
+    </Key>
+    <Property Name="idkh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="passkh" Type="varchar" MaxLength="50" />
+    <Property Name="tenkh" Type="nvarchar" MaxLength="50" />
+    <Property Name="tuoi" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="sdt" Type="char" MaxLength="10" />
+    <Property Name="diachi" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__benhAn__idkh__267ABA7A">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="benhAn" Type="Self.benhAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idkh" />
+      </Principal>
+      <Dependent Role="benhAn">
+        <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatLich__idbs__2B3F6F97">
+    <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
+    <End Role="DatLich" Type="Self.DatLich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BacSi">
+        <PropertyRef Name="idbs" />
+      </Principal>
+      <Dependent Role="DatLich">
+        <PropertyRef Name="idbs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatLich__idkh__2C3393D0">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="DatLich" Type="Self.DatLich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idkh" />
+      </Principal>
+      <Dependent Role="DatLich">
+        <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KetQuaKham__iddl__2F10007B">
+    <End Role="DatLich" Type="Self.DatLich" Multiplicity="0..1" />
+    <End Role="KetQuaKham" Type="Self.KetQuaKham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatLich">
+        <PropertyRef Name="iddl" />
+      </Principal>
+      <Dependent Role="KetQuaKham">
+        <PropertyRef Name="iddl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DoctorQBModelStoreContainer">
+    <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DatLich" EntityType="Self.DatLich" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__benhAn__idkh__267ABA7A" Association="Self.FK__benhAn__idkh__267ABA7A">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="benhAn" EntitySet="benhAn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatLich__idbs__2B3F6F97" Association="Self.FK__DatLich__idbs__2B3F6F97">
+      <End Role="BacSi" EntitySet="BacSi" />
+      <End Role="DatLich" EntitySet="DatLich" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatLich__idkh__2C3393D0" Association="Self.FK__DatLich__idkh__2C3393D0">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DatLich" EntitySet="DatLich" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KetQuaKham__iddl__2F10007B" Association="Self.FK__KetQuaKham__iddl__2F10007B">
+      <End Role="DatLich" EntitySet="DatLich" />
+      <End Role="KetQuaKham" EntitySet="KetQuaKham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

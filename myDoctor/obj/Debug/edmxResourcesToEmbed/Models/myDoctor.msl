@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DoctorQBModelStoreContainer" CdmEntityContainer="DoctorQBEntities">
+    <EntitySetMapping Name="BacSis">
+      <EntityTypeMapping TypeName="DoctorQBModel.BacSi">
+        <MappingFragment StoreEntitySet="BacSi">
+          <ScalarProperty Name="idbs" ColumnName="idbs" />
+          <ScalarProperty Name="passbs" ColumnName="passbs" />
+          <ScalarProperty Name="tenbs" ColumnName="tenbs" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="motabs" ColumnName="motabs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="benhAns">
+      <EntityTypeMapping TypeName="DoctorQBModel.benhAn">
+        <MappingFragment StoreEntitySet="benhAn">
+          <ScalarProperty Name="idba" ColumnName="idba" />
+          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="urlanh" ColumnName="urlanh" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DatLiches">
+      <EntityTypeMapping TypeName="DoctorQBModel.DatLich">
+        <MappingFragment StoreEntitySet="DatLich">
+          <ScalarProperty Name="iddl" ColumnName="iddl" />
+          <ScalarProperty Name="idbs" ColumnName="idbs" />
+          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KetQuaKhams">
+      <EntityTypeMapping TypeName="DoctorQBModel.KetQuaKham">
+        <MappingFragment StoreEntitySet="KetQuaKham">
+          <ScalarProperty Name="idkq" ColumnName="idkq" />
+          <ScalarProperty Name="iddl" ColumnName="iddl" />
+          <ScalarProperty Name="ketqua" ColumnName="ketqua" />
+          <ScalarProperty Name="hdthuoc" ColumnName="hdthuoc" />
+          <ScalarProperty Name="tienkham" ColumnName="tienkham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="DoctorQBModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="passkh" ColumnName="passkh" />
+          <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+          <ScalarProperty Name="tuoi" ColumnName="tuoi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
