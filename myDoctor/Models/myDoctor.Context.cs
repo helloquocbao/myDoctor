@@ -13,10 +13,10 @@ namespace myDoctor.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DoctorQBEntities : DbContext
+    public partial class DoctorQBEntities1 : DbContext
     {
-        public DoctorQBEntities()
-            : base("name=DoctorQBEntities")
+        public DoctorQBEntities1()
+            : base("name=DoctorQBEntities1")
         {
         }
     

@@ -24,6 +24,7 @@ namespace myDoctor.Models
         public Nullable<int> idbs { get; set; }
         public Nullable<int> idkh { get; set; }
         public Nullable<System.DateTime> ngaydat { get; set; }
+        public string trieuchung { get; set; }
     
         public virtual BacSi BacSi { get; set; }
         public virtual KhachHang KhachHang { get; set; }

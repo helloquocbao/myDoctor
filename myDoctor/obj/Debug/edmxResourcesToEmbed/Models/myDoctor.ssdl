@@ -7,6 +7,7 @@
     <Property Name="idbs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="passbs" Type="varchar" MaxLength="50" />
     <Property Name="tenbs" Type="nvarchar" MaxLength="50" />
+    <Property Name="urlanh" Type="varchar" MaxLength="300" />
     <Property Name="sdt" Type="char" MaxLength="10" />
     <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="motabs" Type="nvarchar" MaxLength="300" />
@@ -28,6 +29,7 @@
     <Property Name="idbs" Type="int" />
     <Property Name="idkh" Type="int" />
     <Property Name="ngaydat" Type="datetime" />
+    <Property Name="trieuchung" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <EntityType Name="KetQuaKham">
     <Key>

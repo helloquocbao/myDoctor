@@ -12,6 +12,7 @@
           <Property Name="idbs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="passbs" Type="varchar" MaxLength="50" />
           <Property Name="tenbs" Type="nvarchar" MaxLength="50" />
+          <Property Name="urlanh" Type="varchar" MaxLength="300" />
           <Property Name="sdt" Type="char" MaxLength="10" />
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="motabs" Type="nvarchar" MaxLength="300" />
@@ -33,6 +34,7 @@
           <Property Name="idbs" Type="int" />
           <Property Name="idkh" Type="int" />
           <Property Name="ngaydat" Type="datetime" />
+          <Property Name="trieuchung" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="KetQuaKham">
           <Key>
@@ -139,6 +141,7 @@
           <Property Name="idbs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="passbs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tenbs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="urlanh" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="motabs" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -162,6 +165,7 @@
           <Property Name="idbs" Type="Int32" />
           <Property Name="idkh" Type="Int32" />
           <Property Name="ngaydat" Type="DateTime" Precision="3" />
+          <Property Name="trieuchung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BacSi" Relationship="Self.FK__DatLich__idbs__2B3F6F97" FromRole="DatLich" ToRole="BacSi" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatLich__idkh__2C3393D0" FromRole="DatLich" ToRole="KhachHang" />
           <NavigationProperty Name="KetQuaKhams" Relationship="Self.FK__KetQuaKham__iddl__2F10007B" FromRole="DatLich" ToRole="KetQuaKham" />
@@ -239,7 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DoctorQBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DoctorQBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BacSis" EntityType="Self.BacSi" />
           <EntitySet Name="benhAns" EntityType="Self.benhAn" />
           <EntitySet Name="DatLiches" EntityType="Self.DatLich" />
@@ -267,13 +271,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DoctorQBModelStoreContainer" CdmEntityContainer="DoctorQBEntities">
+        <EntityContainerMapping StorageEntityContainer="DoctorQBModelStoreContainer" CdmEntityContainer="DoctorQBEntities1">
           <EntitySetMapping Name="BacSis">
             <EntityTypeMapping TypeName="DoctorQBModel.BacSi">
               <MappingFragment StoreEntitySet="BacSi">
                 <ScalarProperty Name="idbs" ColumnName="idbs" />
                 <ScalarProperty Name="passbs" ColumnName="passbs" />
                 <ScalarProperty Name="tenbs" ColumnName="tenbs" />
+                <ScalarProperty Name="urlanh" ColumnName="urlanh" />
                 <ScalarProperty Name="sdt" ColumnName="sdt" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="motabs" ColumnName="motabs" />
@@ -297,6 +302,7 @@
                 <ScalarProperty Name="idbs" ColumnName="idbs" />
                 <ScalarProperty Name="idkh" ColumnName="idkh" />
                 <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+                <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

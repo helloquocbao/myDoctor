@@ -129,6 +129,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -178,8 +180,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\myDoctor.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>myDoctor.Context.cs</LastGenOutput>
       <DependentUpon>myDoctor.edmx</DependentUpon>
+      <LastGenOutput>myDoctor.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\myDoctor.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -256,6 +258,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Doctor\Doctor.cshtml" />
     <Content Include="Views\News\News.cshtml" />
+    <Content Include="Views\About\about.cshtml" />
+    <Content Include="Views\Contact\contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

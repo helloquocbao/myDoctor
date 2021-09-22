@@ -7,6 +7,7 @@
     <Property Name="idbs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="passbs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="tenbs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="urlanh" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="motabs" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -30,6 +31,7 @@
     <Property Name="idbs" Type="Int32" />
     <Property Name="idkh" Type="Int32" />
     <Property Name="ngaydat" Type="DateTime" Precision="3" />
+    <Property Name="trieuchung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BacSi" Relationship="Self.FK__DatLich__idbs__2B3F6F97" FromRole="DatLich" ToRole="BacSi" />
     <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatLich__idkh__2C3393D0" FromRole="DatLich" ToRole="KhachHang" />
     <NavigationProperty Name="KetQuaKhams" Relationship="Self.FK__KetQuaKham__iddl__2F10007B" FromRole="DatLich" ToRole="KetQuaKham" />
@@ -107,7 +109,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DoctorQBEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DoctorQBEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BacSis" EntityType="Self.BacSi" />
     <EntitySet Name="benhAns" EntityType="Self.benhAn" />
     <EntitySet Name="DatLiches" EntityType="Self.DatLich" />

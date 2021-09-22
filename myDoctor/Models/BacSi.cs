@@ -23,6 +23,7 @@ namespace myDoctor.Models
         public int idbs { get; set; }
         public string passbs { get; set; }
         public string tenbs { get; set; }
+        public string urlanh { get; set; }
         public string sdt { get; set; }
         public string email { get; set; }
         public string motabs { get; set; }
