@@ -11,6 +11,7 @@
     <Property Name="sdt" Type="char" MaxLength="10" />
     <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="motabs" Type="nvarchar" MaxLength="300" />
+    <Property Name="quyen" Type="bit" />
   </EntityType>
   <EntityType Name="benhAn">
     <Key>
@@ -20,6 +21,15 @@
     <Property Name="idkh" Type="int" />
     <Property Name="urlanh" Type="varchar" MaxLength="300" />
     <Property Name="mota" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="ChiTietThuoc">
+    <Key>
+      <PropertyRef Name="idctthuoc" />
+    </Key>
+    <Property Name="idctthuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iddl" Type="int" />
+    <Property Name="idthuoc" Type="int" />
+    <Property Name="soluong" Type="int" />
   </EntityType>
   <EntityType Name="DatLich">
     <Key>
@@ -53,6 +63,24 @@
     <Property Name="sdt" Type="char" MaxLength="10" />
     <Property Name="diachi" Type="nvarchar" MaxLength="200" />
   </EntityType>
+  <EntityType Name="ThanNhan">
+    <Key>
+      <PropertyRef Name="sdtThanNhan" />
+    </Key>
+    <Property Name="sdtThanNhan" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="tenThanNhan" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailThanNhan" Type="varchar" MaxLength="100" />
+    <Property Name="passtn" Type="varchar" MaxLength="50" />
+    <Property Name="idkh" Type="int" />
+  </EntityType>
+  <EntityType Name="Thuoc">
+    <Key>
+      <PropertyRef Name="idthuoc" />
+    </Key>
+    <Property Name="idthuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenthuoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="mota" Type="nvarchar" MaxLength="100" />
+  </EntityType>
   <Association Name="FK__benhAn__idkh__267ABA7A">
     <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
     <End Role="benhAn" Type="Self.benhAn" Multiplicity="*" />
@@ -62,6 +90,30 @@
       </Principal>
       <Dependent Role="benhAn">
         <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietTh__idthu__34C8D9D1">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="0..1" />
+    <End Role="ChiTietThuoc" Type="Self.ChiTietThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="idthuoc" />
+      </Principal>
+      <Dependent Role="ChiTietThuoc">
+        <PropertyRef Name="idthuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietThu__iddl__33D4B598">
+    <End Role="DatLich" Type="Self.DatLich" Multiplicity="0..1" />
+    <End Role="ChiTietThuoc" Type="Self.ChiTietThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatLich">
+        <PropertyRef Name="iddl" />
+      </Principal>
+      <Dependent Role="ChiTietThuoc">
+        <PropertyRef Name="iddl" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -101,15 +153,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ThanNhan__idkh__37A5467C">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="ThanNhan" Type="Self.ThanNhan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idkh" />
+      </Principal>
+      <Dependent Role="ThanNhan">
+        <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="DoctorQBModelStoreContainer">
     <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietThuoc" EntityType="Self.ChiTietThuoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DatLich" EntityType="Self.DatLich" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThanNhan" EntityType="Self.ThanNhan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__benhAn__idkh__267ABA7A" Association="Self.FK__benhAn__idkh__267ABA7A">
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="benhAn" EntitySet="benhAn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietTh__idthu__34C8D9D1" Association="Self.FK__ChiTietTh__idthu__34C8D9D1">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ChiTietThuoc" EntitySet="ChiTietThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietThu__iddl__33D4B598" Association="Self.FK__ChiTietThu__iddl__33D4B598">
+      <End Role="DatLich" EntitySet="DatLich" />
+      <End Role="ChiTietThuoc" EntitySet="ChiTietThuoc" />
     </AssociationSet>
     <AssociationSet Name="FK__DatLich__idbs__2B3F6F97" Association="Self.FK__DatLich__idbs__2B3F6F97">
       <End Role="BacSi" EntitySet="BacSi" />
@@ -122,6 +197,10 @@
     <AssociationSet Name="FK__KetQuaKham__iddl__2F10007B" Association="Self.FK__KetQuaKham__iddl__2F10007B">
       <End Role="DatLich" EntitySet="DatLich" />
       <End Role="KetQuaKham" EntitySet="KetQuaKham" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThanNhan__idkh__37A5467C" Association="Self.FK__ThanNhan__idkh__37A5467C">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="ThanNhan" EntitySet="ThanNhan" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

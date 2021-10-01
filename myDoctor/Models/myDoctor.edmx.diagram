@@ -4,16 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3457d97cf564c1d8988d37b078e150e" Name="Diagram1">
-        <EntityTypeShape EntityType="DoctorQBModel.BacSi" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorQBModel.benhAn" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorQBModel.DatLich" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorQBModel.KetQuaKham" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DoctorQBModel.KhachHang" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+      <Diagram DiagramId="16d93c0e76f44713aa9253e5fc11b161" Name="Diagram1">
+        <EntityTypeShape EntityType="DoctorQBModel.BacSi" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.benhAn" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.ChiTietThuoc" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.DatLich" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.KetQuaKham" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.KhachHang" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.ThanNhan" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoctorQBModel.Thuoc" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
         <AssociationConnector Association="DoctorQBModel.FK__DatLich__idbs__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorQBModel.FK__benhAn__idkh__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="DoctorQBModel.FK__ChiTietTh__idthu__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DoctorQBModel.FK__ChiTietThu__iddl__33D4B598" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorQBModel.FK__DatLich__idkh__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="DoctorQBModel.FK__KetQuaKham__iddl__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DoctorQBModel.FK__ThanNhan__idkh__37A5467C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

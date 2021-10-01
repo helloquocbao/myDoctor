@@ -19,6 +19,7 @@ namespace myDoctor.Models
         {
             this.benhAns = new HashSet<benhAn>();
             this.DatLiches = new HashSet<DatLich>();
+            this.ThanNhans = new HashSet<ThanNhan>();
         }
     
         public int idkh { get; set; }
@@ -33,5 +34,7 @@ namespace myDoctor.Models
         public virtual ICollection<benhAn> benhAns { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatLich> DatLiches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThanNhan> ThanNhans { get; set; }
     }
 }

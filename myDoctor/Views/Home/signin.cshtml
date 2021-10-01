@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "signin";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<body>
+    <div class="container-fluid ">
+        <div class="container ">
+            <div class="row ">
+
+                <div class="col-sm-10 login-box">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5 box-de">
+                            <div class="small-logo">
+                                <a class="navbar-brand" href="~/Home/index"><span class="text-primary">Quốc Bảo</span>-Health</a>
+                            </div>
+                            <div class="ditk-inf sup-oi">
+                                <h2 class="w-100">Bạn đã có tài khoản </h2>
+                                <p>Chỉ cần đăng nhập vào tài khoản của bạn bằng cách nhấp vào nút đăng nhập</p>
+                                <a href="~/home/login">
+                                    <button type="button" class="btn btn-outline-light">ĐĂNG NHẬP</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 log-det">
+
+                            <h2>Tạo tài khoản</h2>
+                            <div class="row">
+                                <ul>
+                                    <li><i class="fab fa-facebook-f"></i></li>
+                                    <li><i class="fab fa-twitter"></i></li>
+                                    <li><i class="fab fa-linkedin-in"></i></li>
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <p class="small-info">or use your email account</p>
+                            </div>
+
+                            <form class="row contact_form" action="/home/signin" method="post" novalidate="novalidate">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="text-box-cont">
+                                    <div style="font-size:15px"> @ViewData["Loi1"]</div>
+                                    <div class="input-group mb-3">
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="far fa-user"></i>
+                                            </span>
+                                        </div>
+
+                                        <input type="text" class="form-control" name="họ&tên" placeholder="Họ tên.." aria-label="Username" aria-describedby="basic-addon1">
+                                        <br />
+                                    </div>
+                                    <div style="font-size:15px"> @ViewData["Loi7"]</div>
+                                    <div style="font-size:15px"> @ViewData["Loi2"]</div>
+                                    <div class="input-group mb-3">
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="far fa-envelope"></i>
+                                            </span>
+                                        </div>
+
+                                        <input type="email" required class="form-control" name="email" placeholder="Email.." aria-label="Username" aria-describedby="basic-addon1">
+
+                                    </div>
+                                    <div style="font-size:15px">  @ViewData["Loi5"]</div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                        <input type="number" class="form-control" name="SDT" placeholder="Số điện thoại" aria-label="Username" aria-describedby="basic-addon1">
+
+                                    </div>
+                                    <div style="font-size:15px">  @ViewData["Loi3"]</div>
+                                    <div style="font-size:15px">  @ViewData["Loi8"]</div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="password" placeholder="Mật khẩu" aria-label="Username" aria-describedby="basic-addon1">
+
+                                    </div>
+                                    <div style="font-size:15px">  @ViewData["Loi4"]</div>
+                                    <div style="font-size:15px">  @ViewData["Loi8"]</div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="rePassword" placeholder="Nhập lại mật khẩu" aria-label="Username" aria-describedby="basic-addon1">
+
+                                    </div>
+
+                                    <div class="input-group center sup mb-3">
+                                        <button type="submit" class="btn btn-success btn-round">SIGN UP</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

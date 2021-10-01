@@ -17,6 +17,7 @@ namespace myDoctor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DatLich()
         {
+            this.ChiTietThuocs = new HashSet<ChiTietThuoc>();
             this.KetQuaKhams = new HashSet<KetQuaKham>();
         }
     
@@ -27,6 +28,8 @@ namespace myDoctor.Models
         public string trieuchung { get; set; }
     
         public virtual BacSi BacSi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietThuoc> ChiTietThuocs { get; set; }
         public virtual KhachHang KhachHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQuaKham> KetQuaKhams { get; set; }

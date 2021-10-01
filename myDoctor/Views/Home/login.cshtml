@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Quốc Bảo - Đăng nhập</title>
+
+    <link rel="shortcut icon" href="~/Content/assets/images/fav.jpg">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/style.css" />
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm-10 login-box">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-7 log-det">
+                            <div class="small-logo">
+                                <a class="navbar-brand" href="~/Home/index"><span class="text-primary">Quốc Bảo</span>-Health</a>
+                            </div>
+                            <h2>Đăng nhập</h2>
+                            <div class="row">
+                                <ul>
+                                    <li><i class="fab fa-facebook-f"></i></li>
+                                    <li><i class="fab fa-twitter"></i></li>
+                                    <li><i class="fab fa-linkedin-in"></i></li>
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <p class="small-info"></p>
+                            </div>
+
+                            <form class="row contact_form" action="/home/login" method="post" novalidate="novalidate">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="text-box-cont">
+                                    <div style="font-size:15px"> @ViewData["Loi1"]</div>
+                                    <div style="font-size:15px"> @ViewData["Loi3"]</div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" name="email" class="form-control" placeholder="Email.." aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div style="font-size:15px"> @ViewData["Loi2"]</div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" name="password" class="form-control" placeholder="Mật khẩu" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="row">
+                                        <p class="forget-p"></p>
+                                    </div>
+                                    <div class="input-group center mb-3">
+                                        <button class="btn btn-success btn-round">ĐĂNG NHẬP</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                        <div class="col-lg-4 col-md-5 box-de">
+                            <div class="ditk-inf">
+                                <h2 class="w-100">Không có tài khoản </h2>
+                                <p>Chỉ cần tạo tài khoản của bạn bằng cách nhấp vào nút Đăng ký</p>
+                                <a href="~/home/signin">
+                                    <button type="button" class="btn btn-outline-light">ĐĂNG KÝ</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/assets/js/popper.min.js"></script>
+<script src="~/Content/assets/js/bootstrap.min.js"></script>
+<script src="~/Content/assets/js/script.js"></script>
+
+</html>

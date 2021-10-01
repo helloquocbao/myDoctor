@@ -13,10 +13,10 @@ namespace myDoctor.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DoctorQBEntities1 : DbContext
+    public partial class DoctorQBEntities : DbContext
     {
-        public DoctorQBEntities1()
-            : base("name=DoctorQBEntities1")
+        public DoctorQBEntities()
+            : base("name=DoctorQBEntities")
         {
         }
     
@@ -27,8 +27,11 @@ namespace myDoctor.Models
     
         public virtual DbSet<BacSi> BacSis { get; set; }
         public virtual DbSet<benhAn> benhAns { get; set; }
+        public virtual DbSet<ChiTietThuoc> ChiTietThuocs { get; set; }
         public virtual DbSet<DatLich> DatLiches { get; set; }
         public virtual DbSet<KetQuaKham> KetQuaKhams { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<ThanNhan> ThanNhans { get; set; }
+        public virtual DbSet<Thuoc> Thuocs { get; set; }
     }
 }

@@ -1,0 +1,77 @@
+﻿@model  IEnumerable<myDoctor.Models.DatLich>
+
+
+@{
+    ViewBag.Title = "lichkham";
+    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Lịch khám</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <a href="~/home/index" target="_blank"
+               class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
+                Quốc Bảo- Health
+            </a>
+            <ol class="breadcrumb">
+                <li><a href="#">Cá nhân</a></li>
+                <li class="active">Lịch khám</li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Danh sách lịch khám của bạn</h3>
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ngày</th>
+
+                                <th>Tên Bác sĩ</th>
+                                <th>Tên người khám</th>
+                                <th>Triệu chứng</th>
+                                <th>
+                                    Chi tiết khám
+                                </th>
+                                
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @{int a = 1; } 
+                            @foreach(var i in Model)
+    {   
+                            <tr>
+                                <td>@a</td>
+                                <td>@i.ngaydat</td>
+                                <td>@i.BacSi.tenbs</td>
+                                <td>@i.KhachHang.tenkh</td>
+                                <td>@i.trieuchung</td>
+
+                                <td>
+                                    <a href="#">Xem</a>
+                                </td>
+                                <td>
+                                    <a href="#">Hủy đặt</a>
+                                </td>
+                            </tr>
+                                a++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

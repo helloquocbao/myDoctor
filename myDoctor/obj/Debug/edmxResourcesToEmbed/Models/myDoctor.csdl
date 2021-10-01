@@ -11,6 +11,7 @@
     <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="motabs" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="quyen" Type="Boolean" />
     <NavigationProperty Name="DatLiches" Relationship="Self.FK__DatLich__idbs__2B3F6F97" FromRole="BacSi" ToRole="DatLich" />
   </EntityType>
   <EntityType Name="benhAn">
@@ -23,6 +24,17 @@
     <Property Name="mota" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="KhachHang" Relationship="Self.FK__benhAn__idkh__267ABA7A" FromRole="benhAn" ToRole="KhachHang" />
   </EntityType>
+  <EntityType Name="ChiTietThuoc">
+    <Key>
+      <PropertyRef Name="idctthuoc" />
+    </Key>
+    <Property Name="idctthuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iddl" Type="Int32" />
+    <Property Name="idthuoc" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="Thuoc" Relationship="Self.FK__ChiTietTh__idthu__34C8D9D1" FromRole="ChiTietThuoc" ToRole="Thuoc" />
+    <NavigationProperty Name="DatLich" Relationship="Self.FK__ChiTietThu__iddl__33D4B598" FromRole="ChiTietThuoc" ToRole="DatLich" />
+  </EntityType>
   <EntityType Name="DatLich">
     <Key>
       <PropertyRef Name="iddl" />
@@ -33,6 +45,7 @@
     <Property Name="ngaydat" Type="DateTime" Precision="3" />
     <Property Name="trieuchung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BacSi" Relationship="Self.FK__DatLich__idbs__2B3F6F97" FromRole="DatLich" ToRole="BacSi" />
+    <NavigationProperty Name="ChiTietThuocs" Relationship="Self.FK__ChiTietThu__iddl__33D4B598" FromRole="DatLich" ToRole="ChiTietThuoc" />
     <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatLich__idkh__2C3393D0" FromRole="DatLich" ToRole="KhachHang" />
     <NavigationProperty Name="KetQuaKhams" Relationship="Self.FK__KetQuaKham__iddl__2F10007B" FromRole="DatLich" ToRole="KetQuaKham" />
   </EntityType>
@@ -60,6 +73,27 @@
     <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="benhAns" Relationship="Self.FK__benhAn__idkh__267ABA7A" FromRole="KhachHang" ToRole="benhAn" />
     <NavigationProperty Name="DatLiches" Relationship="Self.FK__DatLich__idkh__2C3393D0" FromRole="KhachHang" ToRole="DatLich" />
+    <NavigationProperty Name="ThanNhans" Relationship="Self.FK__ThanNhan__idkh__37A5467C" FromRole="KhachHang" ToRole="ThanNhan" />
+  </EntityType>
+  <EntityType Name="ThanNhan">
+    <Key>
+      <PropertyRef Name="sdtThanNhan" />
+    </Key>
+    <Property Name="sdtThanNhan" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tenThanNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emailThanNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="passtn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idkh" Type="Int32" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__ThanNhan__idkh__37A5467C" FromRole="ThanNhan" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="Thuoc">
+    <Key>
+      <PropertyRef Name="idthuoc" />
+    </Key>
+    <Property Name="idthuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenthuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mota" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietThuocs" Relationship="Self.FK__ChiTietTh__idthu__34C8D9D1" FromRole="Thuoc" ToRole="ChiTietThuoc" />
   </EntityType>
   <Association Name="FK__DatLich__idbs__2B3F6F97">
     <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
@@ -82,6 +116,30 @@
       </Principal>
       <Dependent Role="benhAn">
         <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietTh__idthu__34C8D9D1">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="0..1" />
+    <End Role="ChiTietThuoc" Type="Self.ChiTietThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="idthuoc" />
+      </Principal>
+      <Dependent Role="ChiTietThuoc">
+        <PropertyRef Name="idthuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietThu__iddl__33D4B598">
+    <End Role="DatLich" Type="Self.DatLich" Multiplicity="0..1" />
+    <End Role="ChiTietThuoc" Type="Self.ChiTietThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatLich">
+        <PropertyRef Name="iddl" />
+      </Principal>
+      <Dependent Role="ChiTietThuoc">
+        <PropertyRef Name="iddl" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -109,12 +167,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DoctorQBEntities1" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK__ThanNhan__idkh__37A5467C">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="ThanNhan" Type="Self.ThanNhan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idkh" />
+      </Principal>
+      <Dependent Role="ThanNhan">
+        <PropertyRef Name="idkh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DoctorQBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BacSis" EntityType="Self.BacSi" />
     <EntitySet Name="benhAns" EntityType="Self.benhAn" />
+    <EntitySet Name="ChiTietThuocs" EntityType="Self.ChiTietThuoc" />
     <EntitySet Name="DatLiches" EntityType="Self.DatLich" />
     <EntitySet Name="KetQuaKhams" EntityType="Self.KetQuaKham" />
     <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="ThanNhans" EntityType="Self.ThanNhan" />
+    <EntitySet Name="Thuocs" EntityType="Self.Thuoc" />
     <AssociationSet Name="FK__DatLich__idbs__2B3F6F97" Association="Self.FK__DatLich__idbs__2B3F6F97">
       <End Role="BacSi" EntitySet="BacSis" />
       <End Role="DatLich" EntitySet="DatLiches" />
@@ -123,6 +196,14 @@
       <End Role="KhachHang" EntitySet="KhachHangs" />
       <End Role="benhAn" EntitySet="benhAns" />
     </AssociationSet>
+    <AssociationSet Name="FK__ChiTietTh__idthu__34C8D9D1" Association="Self.FK__ChiTietTh__idthu__34C8D9D1">
+      <End Role="Thuoc" EntitySet="Thuocs" />
+      <End Role="ChiTietThuoc" EntitySet="ChiTietThuocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietThu__iddl__33D4B598" Association="Self.FK__ChiTietThu__iddl__33D4B598">
+      <End Role="DatLich" EntitySet="DatLiches" />
+      <End Role="ChiTietThuoc" EntitySet="ChiTietThuocs" />
+    </AssociationSet>
     <AssociationSet Name="FK__DatLich__idkh__2C3393D0" Association="Self.FK__DatLich__idkh__2C3393D0">
       <End Role="KhachHang" EntitySet="KhachHangs" />
       <End Role="DatLich" EntitySet="DatLiches" />
@@ -130,6 +211,10 @@
     <AssociationSet Name="FK__KetQuaKham__iddl__2F10007B" Association="Self.FK__KetQuaKham__iddl__2F10007B">
       <End Role="DatLich" EntitySet="DatLiches" />
       <End Role="KetQuaKham" EntitySet="KetQuaKhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThanNhan__idkh__37A5467C" Association="Self.FK__ThanNhan__idkh__37A5467C">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="ThanNhan" EntitySet="ThanNhans" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

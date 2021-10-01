@@ -6,7 +6,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    
+
 
     <title>Quốc Bảo - phòng khám chuyên nghiệp</title>
 
@@ -19,10 +19,12 @@
     <link rel="stylesheet" href="../Scripts/assets/vendor/animate/animate.css">
 
     <link rel="stylesheet" href="../Scripts/assets/css/theme.css">
+   
+    <link rel="stylesheet" type="text/css" href="~/Scripts/assets/css/style.css" />
 </head>
 
 <body>
-    <header>
+    <header >
         <div class="topbar">
             <div class="container">
                 <div class="row">
@@ -45,7 +47,7 @@
             </div> <!-- .container -->
         </div> <!-- .topbar -->
 
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style=" z-index: 2">
             <div class="container">
                 <a class="navbar-brand" href="~/Home/index"><span class="text-primary">Quốc Bảo</span>-Health</a>
 
@@ -71,7 +73,26 @@
                             <a class="nav-link" href="~/Contact/contact">Liên hệ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary ml-lg-3" href="#">Đăng nhập / Đăng kí</a>
+                            @using myDoctor.Models
+                            @{
+                                KhachHang kh = (KhachHang)Session["taikhoan"];
+                            }
+                            @if (Session["taikhoan"] == null)
+                            {
+                                <a class="btn btn-primary ml-lg-3" href="~/home/login">Đăng nhập / Đăng kí</a>
+                            }
+                            else
+                            {
+
+                                <div class="dropdown">
+                                    <button onclick="hamDropdown()" class="nut_dropdown btn btn-primary ml-lg-3">Chào: @kh.tenkh</button>
+                                    <div style="margin-left: 15px;" class="noidung_dropdown">
+                                        <a href="~/user/account">tài khoản</a>
+                                        <a href="~/user/hoso">Hồ sơ</a>
+                                        <a href="/user/logout">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            }
                         </li>
                     </ul>
                 </div> <!-- .navbar-collapse -->
@@ -79,18 +100,20 @@
         </nav>
     </header>
 
-    @RenderBody()
+    <div style="z-index:2">
+        @RenderBody()
+    </div>
     <hr />
 
     <footer class="page-footer">
-        <div class="container" >
+        <div class="container">
             <div class="row px-md-3">
                 <div class="col-sm-6 col-lg-3 py-3">
                     <h5>Phòng khám</h5>
                     <ul class="footer-menu">
                         <li><a href="#">Về chúng tối</a></li>
                         <li><a href="~/Doctor/doctor">Bác sĩ</a></li>
-                       
+
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-3 py-3">
@@ -99,10 +122,10 @@
                         <li><a href="#">Tin tức</a></li>
                         <li><a href="#">Cá nhân</a></li>
                         <li><a href="#">Tham gia </a></li>
-                        
+
                     </ul>
                 </div>
-                
+
                 <div class="col-sm-6 col-lg-3 py-3">
                     <h5>Liên hệ</h5>
                     <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
@@ -122,10 +145,10 @@
 
             <hr>
 
-           
+
         </div>
     </footer>
-
+    <script src="../Scripts/assets/css/code.js"></script>
 
     <script src="../Scripts/assets/js/jquery-3.5.1.min.js"></script>
 
@@ -139,5 +162,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
+
 </html>
