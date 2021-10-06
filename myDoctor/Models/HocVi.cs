@@ -12,26 +12,20 @@ namespace myDoctor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DatLich
+    public partial class HocVi
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DatLich()
+        public HocVi()
         {
-            this.ChiTietThuocs = new HashSet<ChiTietThuoc>();
-            this.KetQuaKhams = new HashSet<KetQuaKham>();
+            this.BacSis = new HashSet<BacSi>();
         }
     
-        public int iddl { get; set; }
-        public Nullable<int> idbs { get; set; }
-        public Nullable<int> idkh { get; set; }
-        public Nullable<System.DateTime> ngaydat { get; set; }
-        public string trieuchung { get; set; }
+        public int idHocVi { get; set; }
+        public string ChuyenKhoa { get; set; }
+        public string HocVi1 { get; set; }
+        public string ChungNhan { get; set; }
     
-        public virtual BacSi BacSi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietThuoc> ChiTietThuocs { get; set; }
-        public virtual KhachHang KhachHang { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KetQuaKham> KetQuaKhams { get; set; }
+        public virtual ICollection<BacSi> BacSis { get; set; }
     }
 }

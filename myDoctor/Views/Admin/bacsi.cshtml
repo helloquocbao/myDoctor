@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<myDoctor.Models.BacSi>
 @{
     ViewBag.Title = "bacsi";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
@@ -28,20 +28,24 @@
                                         <th>ID Bác sĩ</th>
                                         <th>Tên Bác sĩ</th>
                                         <th>Số điện thoại</th>
-                                        <th>Email</th>
-                                        <th>URL Ảnh</th>
+                                        <th>Chức vụ</th>
                                         <th>Mô tả</th>
+                                        <th>Chi tiết</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="gradeU">
-                                        <td>Other browsers</td>
-                                        <td>All others</td>
-                                        <td>0101</td>
-                                        <td class="center">ada@gmail.com</td>
-                                        <td class="center">adaaaaaaaaaaaaaads</td>
-                                        <td class="center">adaaaaaaaaaaaaaasds</td>
-                                    </tr>
+                                    @foreach (var i in Model)
+                                    {
+                                        <tr class="gradeU">
+                                            <td>@i.idBacSi</td>
+                                            <td>@i.tenbs</td>
+                                            <td>@i.sdt</td>                                          
+                                            <td class="center">@i.quyen</td>
+                                            <td class="center">@i.motabs</td>
+
+                                            <td><a href="#">Xem</a></td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

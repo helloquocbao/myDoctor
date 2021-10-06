@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<myDoctor.Models.DatLich>
+﻿@model  IEnumerable<myDoctor.Models.LichKham>
 
 
 @{
@@ -40,8 +40,9 @@
                                 <th>Tên người khám</th>
                                 <th>Triệu chứng</th>
                                 <th>
-                                    Chi tiết khám
+                                    Trạng thái
                                 </th>
+                                <th>Chi tiết</th>
                                 
 
 
@@ -57,12 +58,12 @@
                                 <td>@i.BacSi.tenbs</td>
                                 <td>@i.KhachHang.tenkh</td>
                                 <td>@i.trieuchung</td>
-
+                                
                                 <td>
-                                    <a href="#">Xem</a>
+                                   Đã khám
                                 </td>
                                 <td>
-                                    <a href="#">Hủy đặt</a>
+                                    <a href="#">Xem chi tiết</a>
                                 </td>
                             </tr>
                                 a++;

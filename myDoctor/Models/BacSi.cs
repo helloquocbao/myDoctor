@@ -17,11 +17,13 @@ namespace myDoctor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BacSi()
         {
-            this.DatLiches = new HashSet<DatLich>();
+            this.LichKhams = new HashSet<LichKham>();
+            this.LichKhamNhaps = new HashSet<LichKhamNhap>();
         }
     
-        public int idbs { get; set; }
+        public int idBacSi { get; set; }
         public string passbs { get; set; }
+        public Nullable<int> idHocVi { get; set; }
         public string tenbs { get; set; }
         public string urlanh { get; set; }
         public string sdt { get; set; }
@@ -29,7 +31,10 @@ namespace myDoctor.Models
         public string motabs { get; set; }
         public Nullable<bool> quyen { get; set; }
     
+        public virtual HocVi HocVi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatLich> DatLiches { get; set; }
+        public virtual ICollection<LichKham> LichKhams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichKhamNhap> LichKhamNhaps { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace myDoctor.Controllers
 {
     public class HomeController : Controller
     {
-        DoctorQBEntities data = new DoctorQBEntities();
+        myDoctorEntities data = new myDoctorEntities();
         public ActionResult Index()
         {
             return View();
@@ -26,11 +26,11 @@ namespace myDoctor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult login(FormCollection collection)
         {
-            var email = collection["email"];
+            var sdt = collection["sdt"];
             var pass = collection["password"];
-            if (String.IsNullOrEmpty(email))
+            if (String.IsNullOrEmpty(sdt))
             {
-                ViewData["Loi1"] = "Vui lòng nhập email để đăng nhập";
+                ViewData["Loi1"] = "Vui lòng nhập SDT để đăng nhập";
             }
             else if (String.IsNullOrEmpty(pass))
             {
@@ -38,7 +38,7 @@ namespace myDoctor.Controllers
             }
             else
             {
-                KhachHang kh = data.KhachHangs.SingleOrDefault(n => n.email == email && n.passkh == pass);
+                KhachHang kh = data.KhachHangs.SingleOrDefault(n => n.sdt == sdt && n.passkh == pass);
                 if (kh != null)
                 {
 

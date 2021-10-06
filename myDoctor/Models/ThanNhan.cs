@@ -14,12 +14,17 @@ namespace myDoctor.Models
     
     public partial class ThanNhan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ThanNhan()
+        {
+            this.chitietThanNhans = new HashSet<chitietThanNhan>();
+        }
+    
         public string sdtThanNhan { get; set; }
         public string tenThanNhan { get; set; }
-        public string emailThanNhan { get; set; }
-        public string passtn { get; set; }
-        public Nullable<int> idkh { get; set; }
+        public string passThanNhan { get; set; }
     
-        public virtual KhachHang KhachHang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chitietThanNhan> chitietThanNhans { get; set; }
     }
 }

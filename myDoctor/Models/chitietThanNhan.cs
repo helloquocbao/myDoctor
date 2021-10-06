@@ -12,13 +12,14 @@ namespace myDoctor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class benhAn
+    public partial class chitietThanNhan
     {
-        public int idBenhAn { get; set; }
-        public Nullable<int> idKhachHang { get; set; }
-        public string urlanh { get; set; }
-        public string mota { get; set; }
+        public int idctThanNhan { get; set; }
+        public string sdtThanNhan { get; set; }
+        public Nullable<int> idkhachHang { get; set; }
+        public string qHeVoiBenhNhan { get; set; }
     
         public virtual KhachHang KhachHang { get; set; }
+        public virtual ThanNhan ThanNhan { get; set; }
     }
 }

@@ -12,22 +12,26 @@ namespace myDoctor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KetQuaKham
+    public partial class LichKham
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KetQuaKham()
+        public LichKham()
         {
-            this.ChiTietThuocs = new HashSet<ChiTietThuoc>();
+            this.KetQuaKhams = new HashSet<KetQuaKham>();
         }
     
-        public int idKetQua { get; set; }
-        public Nullable<int> idDatLich { get; set; }
-        public string ketqua { get; set; }
-        public string hdthuoc { get; set; }
-        public Nullable<int> tienkham { get; set; }
+        public int idDatLich { get; set; }
+        public Nullable<int> idBacSi { get; set; }
+        public Nullable<int> idKhachHang { get; set; }
+        public string hoten { get; set; }
+        public Nullable<int> tuoi { get; set; }
+        public Nullable<System.DateTime> ngaydat { get; set; }
+        public string trieuchung { get; set; }
+        public Nullable<bool> tinhTrang { get; set; }
     
+        public virtual BacSi BacSi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietThuoc> ChiTietThuocs { get; set; }
-        public virtual LichKham LichKham { get; set; }
+        public virtual ICollection<KetQuaKham> KetQuaKhams { get; set; }
+        public virtual KhachHang KhachHang { get; set; }
     }
 }

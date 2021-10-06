@@ -15,11 +15,11 @@ namespace myDoctor.Models
     public partial class ChiTietThuoc
     {
         public int idctthuoc { get; set; }
-        public Nullable<int> iddl { get; set; }
+        public Nullable<int> idKetQua { get; set; }
         public Nullable<int> idthuoc { get; set; }
         public Nullable<int> soluong { get; set; }
     
+        public virtual KetQuaKham KetQuaKham { get; set; }
         public virtual Thuoc Thuoc { get; set; }
-        public virtual DatLich DatLich { get; set; }
     }
 }

@@ -18,11 +18,11 @@ namespace myDoctor.Models
         public KhachHang()
         {
             this.benhAns = new HashSet<benhAn>();
-            this.DatLiches = new HashSet<DatLich>();
-            this.ThanNhans = new HashSet<ThanNhan>();
+            this.chitietThanNhans = new HashSet<chitietThanNhan>();
+            this.LichKhams = new HashSet<LichKham>();
         }
     
-        public int idkh { get; set; }
+        public int idKhachHang { get; set; }
         public string passkh { get; set; }
         public string tenkh { get; set; }
         public Nullable<int> tuoi { get; set; }
@@ -33,8 +33,8 @@ namespace myDoctor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<benhAn> benhAns { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatLich> DatLiches { get; set; }
+        public virtual ICollection<chitietThanNhan> chitietThanNhans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThanNhan> ThanNhans { get; set; }
+        public virtual ICollection<LichKham> LichKhams { get; set; }
     }
 }

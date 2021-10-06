@@ -9,10 +9,10 @@ namespace myDoctor.Controllers
 {
     public class userController : Controller
     {
-       
+
 
         // GET: user
-        DoctorQBEntities data = new DoctorQBEntities();
+        myDoctorEntities data = new myDoctorEntities();
         public ActionResult logout()
         {
             Session["taikhoan"] = null;
@@ -27,7 +27,7 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "home");
             }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            var account = from p in data.KhachHangs where p.idkh ==accountcheck.idkh  select p;
+            var account = from p in data.KhachHangs where p.idKhachHang == accountcheck.idKhachHang select p;
             return View(account.Single());
         }
 
@@ -38,13 +38,13 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "home");
             }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            return View(data.DatLiches.OrderByDescending(a => a.ngaydat).Where(a=>a.idkh==accountcheck.idkh).ToList());
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a=>a.idKhachHang == accountcheck.idKhachHang).ToList());
             ;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult lichkham(FormCollection collection, DatLich dl)
+        public ActionResult lichkham(FormCollection collection, LichKham dl)
         {
             if (Session["taikhoan"] == null)
             {
@@ -52,17 +52,17 @@ namespace myDoctor.Controllers
             }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
             var idbs = 2;
-            var idkh = accountcheck.idkh;
+            var idkh = accountcheck.idKhachHang;
             string ngay = collection["datetime"];
 
             DateTime datee = DateTime.Parse(ngay);
             var mota = collection["mota"];
 
-            dl.idbs = idbs;
-            dl.idkh = idkh;
+            dl.idBacSi = idbs;
+            dl.idKhachHang = idkh;
             dl.ngaydat = datee;
             dl.trieuchung = mota;
-            data.DatLiches.Add(dl);
+            data.LichKhams.Add(dl);
             data.SaveChanges();
             return RedirectToAction("index", "home");
         }

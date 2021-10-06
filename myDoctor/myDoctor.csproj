@@ -145,16 +145,25 @@
     <Compile Include="Models\benhAn.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\chitietThanNhan.cs">
+      <DependentUpon>myDoctor.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChiTietThuoc.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DatLich.cs">
+    <Compile Include="Models\HocVi.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KetQuaKham.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KhachHang.cs">
+      <DependentUpon>myDoctor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LichKham.cs">
+      <DependentUpon>myDoctor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LichKhamNhap.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\myDoctor.Context.cs">
@@ -171,6 +180,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>myDoctor.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThanNhan.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
@@ -326,13 +338,6 @@
     <Content Include="Content\assets\webfonts\themify.eot" />
     <Content Include="Content\assets\webfonts\themify.ttf" />
     <Content Include="Content\assets\webfonts\themify.woff" />
-    <EntityDeploy Include="Models\myDoctor.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>myDoctor.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\myDoctor.edmx.diagram">
-      <DependentUpon>myDoctor.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -342,6 +347,13 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\myDoctor.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>myDoctor.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\myDoctor.edmx.diagram">
+      <DependentUpon>myDoctor.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -379,6 +391,21 @@
     <Content Include="Scripts\bootstrap\js\tab.js" />
     <Content Include="Scripts\bootstrap\js\tooltip.js" />
     <Content Include="Scripts\bootstrap\js\transition.js" />
+    <Content Include="Scripts\css\animate.css" />
+    <Content Include="Scripts\css\colors\blue-dark.css" />
+    <Content Include="Scripts\css\colors\blue.css" />
+    <Content Include="Scripts\css\colors\default-dark.css" />
+    <Content Include="Scripts\css\colors\default.css" />
+    <Content Include="Scripts\css\colors\gray-dark.css" />
+    <Content Include="Scripts\css\colors\gray.css" />
+    <Content Include="Scripts\css\colors\green-dark.css" />
+    <Content Include="Scripts\css\colors\green.css" />
+    <Content Include="Scripts\css\colors\megna-dark.css" />
+    <Content Include="Scripts\css\colors\megna.css" />
+    <Content Include="Scripts\css\colors\purple-dark.css" />
+    <Content Include="Scripts\css\colors\purple.css" />
+    <Content Include="Scripts\css\spinners.css" />
+    <Content Include="Scripts\css\style.css" />
     <Content Include="Scripts\plugins\bower_components\counterup\jquery.counterup.min.js" />
     <Content Include="Scripts\plugins\bower_components\gmaps\gmaps.js" />
     <Content Include="Scripts\plugins\bower_components\gmaps\gmaps.min.js" />
@@ -554,21 +581,6 @@
     <Content Include="Scripts\plugins\bower_components\waypoints\lib\waypoints.debug.js" />
     <Content Include="Scripts\plugins\bower_components\waypoints\lib\zepto.waypoints.js" />
     <Content Include="Scripts\plugins\bower_components\waypoints\lib\zepto.waypoints.min.js" />
-    <Content Include="Scripts\css\animate.css" />
-    <Content Include="Scripts\css\colors\blue-dark.css" />
-    <Content Include="Scripts\css\colors\blue.css" />
-    <Content Include="Scripts\css\colors\default-dark.css" />
-    <Content Include="Scripts\css\colors\default.css" />
-    <Content Include="Scripts\css\colors\gray-dark.css" />
-    <Content Include="Scripts\css\colors\gray.css" />
-    <Content Include="Scripts\css\colors\green-dark.css" />
-    <Content Include="Scripts\css\colors\green.css" />
-    <Content Include="Scripts\css\colors\megna-dark.css" />
-    <Content Include="Scripts\css\colors\megna.css" />
-    <Content Include="Scripts\css\colors\purple-dark.css" />
-    <Content Include="Scripts\css\colors\purple.css" />
-    <Content Include="Scripts\css\spinners.css" />
-    <Content Include="Scripts\css\style.css" />
     <Content Include="Scripts\plugins\images\error-bg.jpg" />
     <Content Include="Scripts\plugins\images\favicon.png" />
     <Content Include="Scripts\plugins\images\large\img1.jpg" />
@@ -619,47 +631,6 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Home\signin.cshtml" />
     <Content Include="Views\Shared\LayoutAccount.cshtml" />
-    <Content Include="Scripts\plugins\bower_components\gmaps\gmaps.min.js.map" />
-    <Content Include="Scripts\plugins\bower_components\jquery\.bower.json" />
-    <Content Include="Scripts\plugins\bower_components\jquery\bower.json" />
-    <Content Include="Scripts\plugins\bower_components\jquery\dist\jquery.min.map" />
-    <Content Include="Scripts\plugins\bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\.bower.json" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\.travis.yml" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\bower.json" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\bower.travis.json" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\less\morris.core.less" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.area.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.bar.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.donut.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.grid.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.hover.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.line.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\package.json" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\README.md" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\area\area_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\bar\bar_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\bar\colours.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\commas_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\donut\donut_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\auto_grid_lines_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\set_data_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\y_label_format_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\hover_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\label_series_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\line\line_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\pad_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\parse_time_spec.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\support\placeholder.coffee" />
-    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\viz\run.sh" />
-    <Content Include="Scripts\plugins\bower_components\raphael\.bower.json" />
-    <Content Include="Scripts\plugins\bower_components\raphael\bower.json" />
-    <Content Include="Scripts\plugins\bower_components\sidebar-nav\.bower.json" />
-    <Content Include="Scripts\plugins\bower_components\sidebar-nav\bower.json" />
-    <Content Include="Scripts\plugins\bower_components\sidebar-nav\LICENSE" />
-    <Content Include="Scripts\plugins\bower_components\sidebar-nav\package.json" />
-    <Content Include="Scripts\plugins\bower_components\sidebar-nav\README.md" />
     <Content Include="Views\user\account.cshtml" />
     <Content Include="Scripts\bootstrap\CHANGELOG.md" />
     <Content Include="Scripts\bootstrap\dist\css\bootstrap-theme.css.map" />
@@ -803,6 +774,48 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\bacsi.cshtml" />
     <Content Include="Views\Admin\login.cshtml" />
+    <Content Include="Scripts\plugins\bower_components\gmaps\gmaps.min.js.map" />
+    <Content Include="Scripts\plugins\bower_components\jquery\.bower.json" />
+    <Content Include="Scripts\plugins\bower_components\jquery\bower.json" />
+    <Content Include="Scripts\plugins\bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\plugins\bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\.bower.json" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\.travis.yml" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\bower.json" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\bower.travis.json" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\less\morris.core.less" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.area.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.bar.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.donut.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.grid.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.hover.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\lib\morris.line.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\package.json" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\README.md" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\area\area_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\bar\bar_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\bar\colours.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\commas_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\donut\donut_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\auto_grid_lines_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\set_data_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\grid\y_label_format_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\hover_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\label_series_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\line\line_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\pad_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\lib\parse_time_spec.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\support\placeholder.coffee" />
+    <Content Include="Scripts\plugins\bower_components\morrisjs\spec\viz\run.sh" />
+    <Content Include="Scripts\plugins\bower_components\raphael\.bower.json" />
+    <Content Include="Scripts\plugins\bower_components\raphael\bower.json" />
+    <Content Include="Scripts\plugins\bower_components\sidebar-nav\.bower.json" />
+    <Content Include="Scripts\plugins\bower_components\sidebar-nav\bower.json" />
+    <Content Include="Scripts\plugins\bower_components\sidebar-nav\LICENSE" />
+    <Content Include="Scripts\plugins\bower_components\sidebar-nav\package.json" />
+    <Content Include="Scripts\plugins\bower_components\sidebar-nav\README.md" />
+    <Content Include="Views\Admin\account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

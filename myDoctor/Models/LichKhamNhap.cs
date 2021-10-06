@@ -12,13 +12,17 @@ namespace myDoctor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class benhAn
+    public partial class LichKhamNhap
     {
-        public int idBenhAn { get; set; }
-        public Nullable<int> idKhachHang { get; set; }
-        public string urlanh { get; set; }
-        public string mota { get; set; }
+        public int idDatLichNhap { get; set; }
+        public Nullable<int> idBacSi { get; set; }
+        public string hoten { get; set; }
+        public Nullable<int> tuoi { get; set; }
+        public string sdt { get; set; }
+        public Nullable<System.DateTime> ngaydat { get; set; }
+        public string trieuchung { get; set; }
+        public Nullable<bool> tinhTrang { get; set; }
     
-        public virtual KhachHang KhachHang { get; set; }
+        public virtual BacSi BacSi { get; set; }
     }
 }

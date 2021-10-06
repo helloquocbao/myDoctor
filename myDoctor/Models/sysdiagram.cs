@@ -12,13 +12,12 @@ namespace myDoctor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class benhAn
+    public partial class sysdiagram
     {
-        public int idBenhAn { get; set; }
-        public Nullable<int> idKhachHang { get; set; }
-        public string urlanh { get; set; }
-        public string mota { get; set; }
-    
-        public virtual KhachHang KhachHang { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

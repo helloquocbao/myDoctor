@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DoctorQBModelStoreContainer" CdmEntityContainer="DoctorQBEntities">
+  <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities">
     <EntitySetMapping Name="BacSis">
-      <EntityTypeMapping TypeName="DoctorQBModel.BacSi">
+      <EntityTypeMapping TypeName="myDoctorModel.BacSi">
         <MappingFragment StoreEntitySet="BacSi">
-          <ScalarProperty Name="idbs" ColumnName="idbs" />
+          <ScalarProperty Name="idBacSi" ColumnName="idBacSi" />
           <ScalarProperty Name="passbs" ColumnName="passbs" />
+          <ScalarProperty Name="idHocVi" ColumnName="idHocVi" />
           <ScalarProperty Name="tenbs" ColumnName="tenbs" />
           <ScalarProperty Name="urlanh" ColumnName="urlanh" />
           <ScalarProperty Name="sdt" ColumnName="sdt" />
@@ -16,41 +17,40 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="benhAns">
-      <EntityTypeMapping TypeName="DoctorQBModel.benhAn">
+      <EntityTypeMapping TypeName="myDoctorModel.benhAn">
         <MappingFragment StoreEntitySet="benhAn">
-          <ScalarProperty Name="idba" ColumnName="idba" />
-          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="idBenhAn" ColumnName="idBenhAn" />
+          <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
           <ScalarProperty Name="urlanh" ColumnName="urlanh" />
           <ScalarProperty Name="mota" ColumnName="mota" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ChiTietThuocs">
-      <EntityTypeMapping TypeName="DoctorQBModel.ChiTietThuoc">
+      <EntityTypeMapping TypeName="myDoctorModel.ChiTietThuoc">
         <MappingFragment StoreEntitySet="ChiTietThuoc">
           <ScalarProperty Name="idctthuoc" ColumnName="idctthuoc" />
-          <ScalarProperty Name="iddl" ColumnName="iddl" />
+          <ScalarProperty Name="idKetQua" ColumnName="idKetQua" />
           <ScalarProperty Name="idthuoc" ColumnName="idthuoc" />
           <ScalarProperty Name="soluong" ColumnName="soluong" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DatLiches">
-      <EntityTypeMapping TypeName="DoctorQBModel.DatLich">
-        <MappingFragment StoreEntitySet="DatLich">
-          <ScalarProperty Name="iddl" ColumnName="iddl" />
-          <ScalarProperty Name="idbs" ColumnName="idbs" />
-          <ScalarProperty Name="idkh" ColumnName="idkh" />
-          <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
-          <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
+    <EntitySetMapping Name="HocVis">
+      <EntityTypeMapping TypeName="myDoctorModel.HocVi">
+        <MappingFragment StoreEntitySet="HocVi">
+          <ScalarProperty Name="idHocVi" ColumnName="idHocVi" />
+          <ScalarProperty Name="ChuyenKhoa" ColumnName="ChuyenKhoa" />
+          <ScalarProperty Name="HocVi1" ColumnName="HocVi" />
+          <ScalarProperty Name="ChungNhan" ColumnName="ChungNhan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KetQuaKhams">
-      <EntityTypeMapping TypeName="DoctorQBModel.KetQuaKham">
+      <EntityTypeMapping TypeName="myDoctorModel.KetQuaKham">
         <MappingFragment StoreEntitySet="KetQuaKham">
-          <ScalarProperty Name="idkq" ColumnName="idkq" />
-          <ScalarProperty Name="iddl" ColumnName="iddl" />
+          <ScalarProperty Name="idKetQua" ColumnName="idKetQua" />
+          <ScalarProperty Name="idDatLich" ColumnName="idDatLich" />
           <ScalarProperty Name="ketqua" ColumnName="ketqua" />
           <ScalarProperty Name="hdthuoc" ColumnName="hdthuoc" />
           <ScalarProperty Name="tienkham" ColumnName="tienkham" />
@@ -58,9 +58,9 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KhachHangs">
-      <EntityTypeMapping TypeName="DoctorQBModel.KhachHang">
+      <EntityTypeMapping TypeName="myDoctorModel.KhachHang">
         <MappingFragment StoreEntitySet="KhachHang">
-          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
           <ScalarProperty Name="passkh" ColumnName="passkh" />
           <ScalarProperty Name="tenkh" ColumnName="tenkh" />
           <ScalarProperty Name="tuoi" ColumnName="tuoi" />
@@ -70,23 +70,70 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LichKhams">
+      <EntityTypeMapping TypeName="myDoctorModel.LichKham">
+        <MappingFragment StoreEntitySet="LichKham">
+          <ScalarProperty Name="idDatLich" ColumnName="idDatLich" />
+          <ScalarProperty Name="idBacSi" ColumnName="idBacSi" />
+          <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
+          <ScalarProperty Name="hoten" ColumnName="hoten" />
+          <ScalarProperty Name="tuoi" ColumnName="tuoi" />
+          <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+          <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
+          <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LichKhamNhaps">
+      <EntityTypeMapping TypeName="myDoctorModel.LichKhamNhap">
+        <MappingFragment StoreEntitySet="LichKhamNhap">
+          <ScalarProperty Name="idDatLichNhap" ColumnName="idDatLichNhap" />
+          <ScalarProperty Name="idBacSi" ColumnName="idBacSi" />
+          <ScalarProperty Name="hoten" ColumnName="hoten" />
+          <ScalarProperty Name="tuoi" ColumnName="tuoi" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
+          <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
+          <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="myDoctorModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ThanNhans">
-      <EntityTypeMapping TypeName="DoctorQBModel.ThanNhan">
+      <EntityTypeMapping TypeName="myDoctorModel.ThanNhan">
         <MappingFragment StoreEntitySet="ThanNhan">
           <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
           <ScalarProperty Name="tenThanNhan" ColumnName="tenThanNhan" />
-          <ScalarProperty Name="emailThanNhan" ColumnName="emailThanNhan" />
-          <ScalarProperty Name="passtn" ColumnName="passtn" />
-          <ScalarProperty Name="idkh" ColumnName="idkh" />
+          <ScalarProperty Name="passThanNhan" ColumnName="passThanNhan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Thuocs">
-      <EntityTypeMapping TypeName="DoctorQBModel.Thuoc">
+      <EntityTypeMapping TypeName="myDoctorModel.Thuoc">
         <MappingFragment StoreEntitySet="Thuoc">
           <ScalarProperty Name="idthuoc" ColumnName="idthuoc" />
           <ScalarProperty Name="tenthuoc" ColumnName="tenthuoc" />
           <ScalarProperty Name="mota" ColumnName="mota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chitietThanNhans">
+      <EntityTypeMapping TypeName="myDoctorModel.chitietThanNhan">
+        <MappingFragment StoreEntitySet="chitietThanNhan">
+          <ScalarProperty Name="idctThanNhan" ColumnName="idctThanNhan" />
+          <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
+          <ScalarProperty Name="idkhachHang" ColumnName="idkhachHang" />
+          <ScalarProperty Name="qHeVoiBenhNhan" ColumnName="qHeVoiBenhNhan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
