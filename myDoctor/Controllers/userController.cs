@@ -42,29 +42,12 @@ namespace myDoctor.Controllers
             ;
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult lichkham(FormCollection collection, LichKham dl)
+        public ActionResult XemKetQua(int id)
         {
-            if (Session["taikhoan"] == null)
-            {
-                return RedirectToAction("login", "home");
-            }
-            KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            var idbs = 2;
-            var idkh = accountcheck.idKhachHang;
-            string ngay = collection["datetime"];
+            var chitet = from s in data.KetQuaKhams where s.idDatLich == id select s;
 
-            DateTime datee = DateTime.Parse(ngay);
-            var mota = collection["mota"];
-
-            dl.idBacSi = idbs;
-            dl.idKhachHang = idkh;
-            dl.ngaydat = datee;
-            dl.trieuchung = mota;
-            data.LichKhams.Add(dl);
-            data.SaveChanges();
-            return RedirectToAction("index", "home");
+            return View(chitet.Single());
         }
+
     }
 }

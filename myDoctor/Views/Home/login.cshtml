@@ -84,6 +84,29 @@
         </div>
     </div>
 </body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAeQ2x8DlDQadhRlw7sbxa1p3XqMAmL4Mg",
+    authDomain: "mydoctor-f869c.firebaseapp.com",
+    projectId: "mydoctor-f869c",
+    storageBucket: "mydoctor-f869c.appspot.com",
+    messagingSenderId: "1042765053296",
+    appId: "1:1042765053296:web:cd96457e1549dea80323b5",
+    measurementId: "G-CDSK71MWSH"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
 <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
 <script src="~/Content/assets/js/popper.min.js"></script>

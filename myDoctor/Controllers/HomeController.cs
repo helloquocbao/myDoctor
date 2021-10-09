@@ -15,6 +15,58 @@ namespace myDoctor.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(FormCollection collection, LichKham dl)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            else
+            {
+                try
+                {
+                    KhachHang accountcheck = Session["taikhoan"] as KhachHang;                  
+                    var idkh = accountcheck.idKhachHang;
+                    int idbs = int.Parse(collection["bacsi"]);
+                    int atuoi = int.Parse(collection["tuoi"]);
+                    string ngay = collection["datetime"];
+                    string hoten = collection["hoten"];
+                    var mota = collection["mota"];
+                    if (ngay == null || hoten.Length==0|| atuoi == null)
+                    {
+                        ViewData["Loi3"] = "Vui lòng điền đầy đủ thông tin";
+                        return View();
+                    }
+                    else
+                    {
+                        DateTime datee = DateTime.Parse(ngay);
+
+                        if (datee <= DateTime.Now.AddHours(2))
+                        {
+                            ViewData["Loi1"] = "Vui lòng chọn thời gian lớn hơn thời gian hiện tại 2 giờ";
+                            return View();
+                        }
+                        dl.idBacSi = idbs;
+                        dl.hoten = hoten;
+                        dl.idKhachHang = idkh;
+                        dl.ngaydat = datee;
+                        dl.trieuchung = mota;
+                        data.LichKhams.Add(dl);
+                        data.SaveChanges();
+                        ViewData["Loi2"] = "Đặt lịch thành công, bạn có thể kiểm tra trong thông tin cá nhân";
+                        return Redirect("~/user/lichkham");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ViewData["Loi3"] = "Vui lòng điền đầy đủ thông tin";
+                }
+            }
+            return View();
+        }
+
         public ActionResult login()
         {
             return View();
@@ -74,11 +126,7 @@ namespace myDoctor.Controllers
             if (String.IsNullOrEmpty(hoten))
             {
                 ViewData["Loi1"] = "Họ tên không được để trống";
-            }
-            else if (String.IsNullOrEmpty(email))
-            {
-                ViewData["Loi2"] = "Phải nhập email";
-            }
+            }         
             else if (String.IsNullOrEmpty(pass))
             {
                 ViewData["Loi3"] = "Phải nhập mật khẩu";
@@ -99,12 +147,13 @@ namespace myDoctor.Controllers
             {
                 try
                 {
-                    KhachHang checkkh = data.KhachHangs.SingleOrDefault(n => n.email == email);
+                    KhachHang checkkh = data.KhachHangs.SingleOrDefault(n => n.sdt == phone);
                     if (checkkh != null)
                     {
-                        ViewData["Loi7"] = "Email đã tồn tại, vui lòng chọn email khác";
+                        ViewData["Loi0"] = "SĐT đã tồn tại, vui lòng chọn SĐT khác";
                         return this.signin();
                     }
+
                     if(phone.Length != 10)
                     {
                         {
@@ -124,10 +173,13 @@ namespace myDoctor.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+                    ViewData["Loi10"] = "Vui lòng nhập đủ thông tin";
                 }
             }
             return this.signin();
         }
+
+      
+       
     }
 }

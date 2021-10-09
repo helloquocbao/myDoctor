@@ -621,7 +621,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Doctor\Doctor.cshtml" />
     <Content Include="Views\News\News.cshtml" />
@@ -769,7 +768,6 @@
     <Content Include="Scripts\less\style.less" />
     <Content Include="Scripts\less\variables.less" />
     <Content Include="Scripts\less\widgets.less" />
-    <Content Include="Views\user\lichkham.cshtml" />
     <Content Include="Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\bacsi.cshtml" />
@@ -816,6 +814,9 @@
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\package.json" />
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\README.md" />
     <Content Include="Views\Admin\account.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\user\lichkham.cshtml" />
+    <Content Include="Views\user\XemKetQua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

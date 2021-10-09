@@ -1,11 +1,20 @@
 ﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using myDoctor.Models
+@{
+    KhachHang kh = (KhachHang)Session["taikhoan"];
+}
 
 <div class="page-hero bg-image overlay-dark" style="z-index:1; background-image: url(../Scripts/assets/img/bg_image_1.jpg);">
     <div class="hero-section">
         <div class="container text-center wow zoomIn">
             <span class="subhead">Phòng khám tư nhân</span>
             <h1 class="display-4">Quốc Bảo</h1>
-            <a  class="btn btn-primary">Đặt lịch</a>
+            <a class="btn btn-primary" href="#lichkham">Đặt lịch</a>
         </div>
     </div>
 </div>
@@ -65,34 +74,38 @@
 
 
 <div class="page-section">
-    <div class="container">
-
+    <div class="container" id="lichkham">
         <h1 class="text-center wow fadeInUp" id="#2">Đặt lịch</h1>
-        <form class="main-form" action="~/user/lichkham" method="post" novalidate="novalidate">
+        <form class="main-form" action="~/home/index" method="post" novalidate="novalidate">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-          
-                <div class="row mt-5 ">
-                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                        <input type="text" class="form-control" name="hoten" placeholder="Họ tên..">
-                    </div>
-                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                        <input type="text" class="form-control" name="email" placeholder="Email..">
-                    </div>
-                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-                        <input type="datetime-local" class="form-control" name="datetime">
-                    </div>
-                    <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-                        <input type="text" class="form-control" name="sdt" placeholder="Số điện thoại..">
-                    </div>
-
-                    <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                        <textarea  name="mota" class="form-control" rows="6" placeholder="Mô tả triệu chứng.."></textarea>
-                    </div>
+            @ViewData["Loi3"]
+            <div class="row mt-5 ">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                    <input type="text" class="form-control" name="hoten" placeholder="Họ tên..">
+                    @ViewData["Loi0"]
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                    <input type="number" class="form-control" name="tuoi" placeholder="Tuổi..">
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                    <input type="datetime-local" class="form-control" name="datetime">
+                    @ViewData["Loi1"]
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">              
+                    <select name="bacsi" class="form-control">
+                        <option value="1">Lê Hồ Quốc Bảo</option>
+                        <option value="2">Phùng A Bin</option>
+                    </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Đặt lịch hẹn</button>
-            </form>
+                <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+                    <textarea name="mota" class="form-control" rows="6" placeholder="Mô tả triệu chứng.."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Đặt lịch hẹn</button>
+        </form>
 
 
     </div>
