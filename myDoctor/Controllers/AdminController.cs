@@ -83,5 +83,18 @@ namespace myDoctor.Controllers
             var account = from p in data.BacSis where p.idBacSi == accountcheck.idBacSi select p;
             return View(account.Single());
         }
+
+        public ActionResult lichKham()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
+
+        
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now).ToList());
+        }
+
     }
 }

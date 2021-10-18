@@ -347,6 +347,15 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\sc2\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Scripts\sc2\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\sc2\bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\sc2\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\sc2\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\sc2\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\sc2\jquery\jquery-1.8.3.min.js" />
+    <Content Include="xacThuc.js" />
     <EntityDeploy Include="Models\myDoctor.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>myDoctor.Designer.cs</LastGenOutput>
@@ -816,6 +825,14 @@
     <Content Include="Views\Admin\account.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\user\lichkham.cshtml" />
+    <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Admin\lichKham.cshtml" />
+    <Content Include="Views\user\ThanNhan.cshtml" />
+    <Content Include="Views\user\addthannhan.cshtml" />
+    <Content Include="Views\user\nguoibenh.cshtml" />
+    <Content Include="Views\user\thongtinbenhnhan.cshtml" />
     <Content Include="Views\user\XemKetQua.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
     ViewBag.Title = "lichkham";
     Layout = "~/Views/Shared/LayoutAccount.cshtml";
 }
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>x
 <div class="container-fluid">
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -39,9 +39,7 @@
                                 <th>Tên Bác sĩ</th>
                                 <th>Tên người khám</th>
                                 <th>Triệu chứng</th>
-                                <th>
-                                    Trạng thái
-                                </th>
+                               
                                 <th>Kết quả</th>
                                 
 
@@ -58,13 +56,28 @@
                                 <td>@i.BacSi.tenbs</td>
                                 <td>@i.hoten</td>
                                 <td>@i.trieuchung</td>
-                                <td>
-                                    <a href="#">Xem chi tiết</a>
-                                </td>
+                                
                                 @if (i.tinhTrang == true)
                                 {
                                     <td>
-                                        <a href="@Url.Action("xemketqua","user",new {id =i.idDatLich })">Xem kết quả</a>
+
+                                        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                                            <button type="button" class="btn-block" style="width:225px">Xem kết quả </button>
+                                            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("xemketqua","user",new {id =i.idDatLich })'></div>
+
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+                                                    $('.btn-block').click(function () {
+                                                        var url = $('#myModal').data('url');
+                                                        $.get(url, function (data) {
+                                                            $("#myModal").html(data);
+                                                            $("#myModal").modal('show');
+                                                        });
+                                                    });
+                                                });
+                                            </script>
+
+                                        </div>
                                     </td>
                                 }
                                 else

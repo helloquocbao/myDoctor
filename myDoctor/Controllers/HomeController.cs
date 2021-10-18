@@ -43,6 +43,11 @@ namespace myDoctor.Controllers
                     {
                         DateTime datee = DateTime.Parse(ngay);
 
+                        if(atuoi <= 3)
+                        {
+                            ViewData["Loi11"] = "Xin lỗi phòng khám chỉ khám trẻ trên 3 tuổi";
+                            return View();
+                        }
                         if (datee <= DateTime.Now.AddHours(2))
                         {
                             ViewData["Loi1"] = "Vui lòng chọn thời gian lớn hơn thời gian hiện tại 2 giờ";
@@ -55,6 +60,7 @@ namespace myDoctor.Controllers
                         dl.trieuchung = mota;
                         data.LichKhams.Add(dl);
                         data.SaveChanges();
+                       
                         ViewData["Loi2"] = "Đặt lịch thành công, bạn có thể kiểm tra trong thông tin cá nhân";
                         return Redirect("~/user/lichkham");
                     }
@@ -115,7 +121,7 @@ namespace myDoctor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult signin(FormCollection collection,  KhachHang kh)
+        public ActionResult signin(FormCollection collection,  KhachHang kh, ThanNhan tn)
         {
             var hoten = collection["họ&tên"];
             var email = collection["email"];
@@ -165,9 +171,11 @@ namespace myDoctor.Controllers
                     kh.email = email;
                     kh.passkh = pass;
                     kh.sdt = phone;
-                   
-
+                    tn.sdtThanNhan = phone;
+                    tn.tenThanNhan = hoten;
+                    
                     data.KhachHangs.Add(kh);
+                    data.ThanNhans.Add(tn);
                     data.SaveChanges();
                     return RedirectToAction("login");
                 }

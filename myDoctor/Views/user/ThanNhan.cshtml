@@ -1,0 +1,80 @@
+﻿@model  IEnumerable<myDoctor.Models.chitietThanNhan>
+
+@{
+    ViewBag.Title = "ThanNhan";
+    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thân nhân</h4>
+            @ViewData["loi1"]
+            @ViewData["Loi0"]
+        </div>
+        <div  class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <button type="button" class="btn-block pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" style="width:225px">Thêm thân nhân </button>           
+            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("addthannhan","user")'></div>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.btn-block').click(function () {
+                        var url = $('#myModal').data('url');
+                        $.get(url, function (data) {
+                            $("#myModal").html(data);
+                            $("#myModal").modal('show');
+                        });
+                    });
+                });
+            </script>
+            <ol class="breadcrumb">
+                <li><a href="#">Cá nhân</a></li>
+                <li class="active">Thân nhân</li>
+            </ol>
+        </div>
+
+        
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Danh sách thân nhân của bạn</h3>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên thân nhân</th>
+
+                                <th>Số điện thoại</th>
+                                <th>Mối quan hệ với bệnh nhân</th>
+                               
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int a = 1; }
+                            @foreach (var i in Model)
+                            {
+                            <tr>
+                                <td>@a</td>
+                                <td>@i.ThanNhan.tenThanNhan</td>
+                                <td>@i.sdtThanNhan</td>
+                                <td>@i.qHeVoiBenhNhan</td>
+                            </tr>
+                                a++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

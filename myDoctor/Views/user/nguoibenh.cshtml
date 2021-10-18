@@ -1,0 +1,58 @@
+﻿@model  IEnumerable<myDoctor.Models.chitietThanNhan>
+@{
+    ViewBag.Title = "nguoibenh";
+    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thân nhân</h4>
+            @ViewData["loi1"]
+            @ViewData["Loi0"]
+        </div>
+
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Danh sách thân nhân mắc bệnh</h3>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên bệnh nhân</th>
+
+                                <th>Số điện thoại</th>
+                                <th>Chi tiết</th>
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int a = 1; }
+                            @foreach (var i in Model)
+                            {
+                            <tr>
+                                <td>@a</td>
+                                <td>@i.KhachHang.tenkh</td>
+                                <td>@i.KhachHang.sdt</td>
+                                <td>
+                                    <a href="@Url.Action("thongtinbenhnhan","user",new {id =i.idkhachHang })">Xem thông tin</a>
+                                </td>
+                            </tr>
+                                a++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

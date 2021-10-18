@@ -1,0 +1,88 @@
+﻿@model  IEnumerable<myDoctor.Models.LichKham>
+@{
+    ViewBag.Title = "thongtinbenhnhan";
+    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thân nhân</h4>
+            @ViewData["loi1"]
+            @ViewData["Loi0"]
+        </div>
+
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Danh sách thân nhân của bạn</h3>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ngày khám</th>
+                                <th>Bác sĩ</th>
+                                <th>Triệu chứng</th>
+                                <th>kết quả</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int a = 1; }
+                            @foreach (var i in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @a
+                                </td>
+                                <td>@i.ngaydat</td>
+                                <td>@i.BacSi.tenbs</td>
+                                <td>@i.trieuchung</td>
+                                @if (i.tinhTrang == false)
+                                {
+
+
+                                         <td>Chưa khám</td>
+                                    }
+                                    else
+                                    {
+                            <td>
+                             
+                                <div style="">
+                                    <button type="button" class="btn-block" style="width:225px">Xem kết quả </button>
+                                    <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("xemketqua","user",new {id =i.idDatLich })'></div>
+
+                                    <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.btn-block').click(function () {
+                        var url = $('#myModal').data('url');
+                        $.get(url, function (data) {
+                            $("#myModal").html(data);
+                            $("#myModal").modal('show');
+                        });
+                    });
+                });
+                                    </script>
+                                  
+                                </div>
+                            </td>
+                                    }
+                                
+                                
+
+                            </tr>
+                                a++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
