@@ -96,5 +96,16 @@ namespace myDoctor.Controllers
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now).ToList());
         }
 
+
+        public ActionResult answerVideoCall()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            return View();
+         }
+
+
     }
 }

@@ -132,5 +132,16 @@ namespace myDoctor.Controllers
 
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idKhachHang == id).ToList());
         }
+
+        public ActionResult video_call()
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            return View();
+        }
+        
+
     }
 }

@@ -225,6 +225,7 @@
     <Content Include="Content\css\timeline.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\image\background.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\dataTables\dataTables.bootstrap.min.js" />
     <Content Include="Content\js\dataTables\jquery.dataTables.min.js" />
@@ -347,6 +348,10 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\CallVideo\js\code.js" />
+    <Content Include="Scripts\CallVideo\js\lib\jquery.js" />
+    <Content Include="Scripts\CallVideo\js\lib\socket.io-2.2.0.js" />
+    <Content Include="Scripts\CallVideo\js\StringeeSDK-1.5.10.js" />
     <Content Include="Scripts\sc2\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\sc2\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Scripts\sc2\bootstrap\css\bootstrap.css" />
@@ -834,6 +839,8 @@
     <Content Include="Views\user\nguoibenh.cshtml" />
     <Content Include="Views\user\thongtinbenhnhan.cshtml" />
     <Content Include="Views\user\XemKetQua.cshtml" />
+    <Content Include="Views\user\video_call.cshtml" />
+    <Content Include="Views\Admin\answerVideoCall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "answerVideoCall";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    #video-container {
+        position: relative;
+        margin: auto;
+        width: 820px;
+    }
+
+    video {
+        background-image: url('https://img4.thuthuatphanmem.vn/uploads/2020/07/05/background-y-te_034617740.jpg')
+    }
+
+    #localVideo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 120px;
+        z-index: 10;
+        background: #333;
+    }
+
+    #remoteVideo {
+        width: 100%;
+    }
+
+    #action-buttons {
+        margin: auto;
+        text-align: center;
+    }
+
+    .hidden-first {
+        display: none;
+    }
+</style>
+
+<div class="container" style="margin-left: 220px;">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="jumbotron">
+                <div class="container" style=" height:60px">
+                    <h2>Cuộc gọi - Khách hàng</h2>
+                   
+                    <div id="incoming-call-notice" style="display: none;">
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="sr-only">Incoming call...</span>
+                        </div>
+                        <h3>Incoming call...</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="video-container">
+                <video id="localVideo" autoplay muted></video>
+                <video id="remoteVideo" autoplay style="height: 480px;"></video>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col" id="action-buttons">
+         
+            <button id="answerCallButton" class="btn btn-info hidden-first">Trả lời</button>
+            <button id="rejectCallButton" class="btn btn-warning hidden-first">Từ chối</button>
+            <button id="endCallButton" class="btn btn-danger hidden-first">Kết thúc</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/CallVideo/js/lib/jquery.js"></script>
+<script src="~/Scripts/CallVideo/js/lib/socket.io-2.2.0.js"></script>
+<script src="~/Scripts/CallVideo/js/StringeeSDK-1.5.10.js"></script>
+
+
+
+
+<script>
+    var token = 'eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTS1pNTDFuODhJVHdRN0NLUmI1TXNLelRkNXdJTkJlTEJzLTE2MzUwNDc5NDciLCJpc3MiOiJTS1pNTDFuODhJVHdRN0NLUmI1TXNLelRkNXdJTkJlTEJzIiwiZXhwIjoxNjM1MTM0MzQ3LCJ1c2VySWQiOiJ1c2VyMiJ9.9sOgFoiniMpZp3CnMJGhHy2f3ptNvgXZMvArHsplBJA';
+    var callerId = 'user1';
+    var calleeId = 'user2';
+</script>
+
+
+<script src="~/Scripts/CallVideo/js/code.js"></script>
+
