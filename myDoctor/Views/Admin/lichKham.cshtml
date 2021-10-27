@@ -1,88 +1,100 @@
 ﻿
 @{
     ViewBag.Title = "lichKham";
-    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
-<div class="container-fluid">
-    <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Lịch khám</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <a href="~/home/index" target="_blank"
-               class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
-                Quốc Bảo- Health
-            </a>
-            <ol class="breadcrumb">
-                <li><a href="#">Cá nhân</a></li>
-                <li class="active">Lịch khám</li>
-            </ol>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /row -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="white-box">
-                <h3 class="box-title">Danh sách lịch khám của bạn</h3>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Ngày</th>
-
-                                <th>Tên Bác sĩ</th>
-                                <th>Tên người khám</th>
-                                <th>Triệu chứng</th>
-                                <th>
-                                    Trạng thái
-                                </th>
-                                <th>Kết quả</th>
-
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{int a = 1; }
-                            @foreach (var i in Model)
-                            {
-                                <tr>
-                                    <td>@a</td>
-                                    <td>@i.ngaydat</td>
-                                    <td>@i.BacSi.tenbs</td>
-                                    <td>@i.hoten</td>
-                                    <td>@i.trieuchung</td>
-                                    <td>
-                                        <a href="#">Xem chi tiết</a>
-                                    </td>
-                                    @if (i.tinhTrang == true)
-                                    {
-                                        <td>
-                                            <a href="@Url.Action("xemketqua","user",new {id =i.idDatLich })">Xem kết quả</a>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            Chưa khám
-                                        </td>
-                                    }
-
-
-
-
-                                </tr>
-                                a++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Bác sĩ</h1>
             </div>
+            <!-- /.col-lg-12 -->
         </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thông tin các bác sĩ
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr style="background-color:#34caaa">
+                                        <th>#</th>
+                                        <th>Ngày</th>
+
+                                        <th>Tên Bác sĩ</th>
+                                        <th>Tên người khám</th>
+                                        <th>Triệu chứng</th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th>Kết quả</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                      @{int a = 1; }
+                                    @foreach (var i in Model)
+                                    {
+                                    <tr class="gradeU">
+                                        <td>@a</td>
+                                        <td>@i.ngaydat</td>
+                                        <td>@i.BacSi.tenbs</td>
+                                        <td>@i.hoten</td>
+                                        <td>@i.trieuchung</td>
+
+                                        @if (i.tinhTrang == true)
+                                        {
+                                            <td >
+                                                <label>Đã khám</label>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                Chưa khám
+                                            </td>
+                                           
+                                        }
+
+                                        @if (i.tinhTrang == true)
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("xemketqua","admin",new {id =i.idDatLich })">Xem kết quả</a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                Chưa có kết quả
+                                            </td>
+                                            
+                                        }
+
+
+                                    </tr>
+                                        a++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <!-- /.row -->
+        <!-- /.row -->
     </div>
-    <!-- /.row -->
+    <!-- /.container-fluid -->
 </div>

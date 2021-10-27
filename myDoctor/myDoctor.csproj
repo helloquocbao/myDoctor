@@ -190,6 +190,7 @@
     <Compile Include="Models\Thuoc.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\KetQuaKhamViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -841,6 +842,7 @@
     <Content Include="Views\user\XemKetQua.cshtml" />
     <Content Include="Views\user\video_call.cshtml" />
     <Content Include="Views\Admin\answerVideoCall.cshtml" />
+    <Content Include="Views\Admin\xemKetQua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

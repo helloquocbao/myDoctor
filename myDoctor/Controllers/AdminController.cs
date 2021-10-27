@@ -1,4 +1,5 @@
 ﻿using myDoctor.Models;
+using myDoctor.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,6 +107,30 @@ namespace myDoctor.Controllers
             return View();
          }
 
+        public ActionResult xemKetQua(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            var ketQua = from a in data.KetQuaKhams
+                         join b in data.LichKhams on a.idDatLich equals b.idDatLich
+                         join c in data.BacSis on b.idBacSi equals c.idBacSi                      
+                         where a.idDatLich == id && a.idDatLich == b.idDatLich && c.idBacSi == b.idBacSi
+                         select new KetQuaKhamViewModel
+                         {
+                             idDatLich = a.idDatLich,
+                             idKetQua = a.idKetQua,
+                             idBacSi = b.idBacSi,
+                             tenbs = c.tenbs,
+                             ketqua = a.ketqua,
+                             hdthuoc = a.hdthuoc,
+                             tienkham = a.tienkham,
+                             ChuyenKhoa = c.HocVi.ChuyenKhoa, 
+                         };
+            
+            return View(ketQua);
+        }
 
     }
 }
