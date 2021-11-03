@@ -15,20 +15,11 @@
             @ViewData["Loi0"]
         </div>
         <div  class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <button type="button" class="btn-block pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" style="width:225px">Thêm thân nhân </button>           
-            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("addthannhan","user")'></div>
+            <button type="button" class="btn-block pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" style="width:225px"> <a href="~/user/addthannhan">Thêm thân nhân </a></button>           
+            
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.btn-block').click(function () {
-                        var url = $('#myModal').data('url');
-                        $.get(url, function (data) {
-                            $("#myModal").html(data);
-                            $("#myModal").modal('show');
-                        });
-                    });
-                });
-            </script>
+            </div>
+
             <ol class="breadcrumb">
                 <li><a href="#">Cá nhân</a></li>
                 <li class="active">Thân nhân</li>

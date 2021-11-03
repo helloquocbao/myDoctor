@@ -1,6 +1,6 @@
 ﻿using myDoctor.Models;
 using System;
-using System.Collections.Generic;
+
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -69,49 +69,48 @@ namespace myDoctor.Controllers
 
         public ActionResult addthannhan()
         {
-
-            return PartialView();
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult addthannhan(FormCollection collection, chitietThanNhan ct)
+        public ActionResult addthannhan(FormCollection collection)
         {
             if (Session["taikhoan"] == null)
             {
                 return RedirectToAction("login", "home");
             }
-            KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            var idkh = accountcheck.idKhachHang;
-            var sdt = collection["sdt"];
-            var mqh = collection["mqh"];
-            var check = from s in data.ThanNhans where s.sdtThanNhan == sdt select s;
-            if (check == null || sdt == null)
-            {
-                ViewData["Loi0"] = "Số điện thoại không tồn tại trong hệ thống, vui lòng nhập số khác";
-
-                return RedirectToAction("thannhan", "user");
-            }
             else
             {
-                try
+                KhachHang accountcheck = Session["taikhoan"] as KhachHang;
+                var idkh = accountcheck.idKhachHang;
+                var sdt = collection["sdt"];
+                var mqh = collection["mqh"];
+                if (mqh.Length < 2 || mqh.Length > 30)
                 {
-                    String connet = "Data Source=QUOCBAO\\BAO;Initial Catalog=myDoctor;Integrated Security=True";
-                    SqlConnection connection = new SqlConnection(connet);
-                    connection.Open();
-                    String query = "INSERT dbo.chitietThanNhan VALUES ('" + sdt + "'," + idkh + ", N'" + mqh + "')";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                    ViewData["Loi0"] = "Số điện thoại không tồn tại trong hệ thống, vui lòng nhập số khác";
-                    return RedirectToAction("thannhan");
+                    ViewData["Loi1"] = "Mối quán hệ với người thân phải từ 2 đến 30 kí tự";
+                    return this.View();
                 }
-                catch (Exception ex)
-                {
-                    ViewData["loi1"] = "Số điện thoại trong tồn tại trong hệ thống";
+                // var check = from s in data.ThanNhans where s.sdtThanNhan == sdt select s;
+               
+                    var ctthannhan = new chitietThanNhan()
+                    {
+                        
+                        idkhachHang = idkh,
+                        sdtThanNhan = sdt,
+                        qHeVoiBenhNhan = mqh,
+                    };
+                    data.chitietThanNhans.Add(ctthannhan);
+                    data.SaveChanges();
                     return RedirectToAction("thannhan", "user");
-                }
+              
+                
             }
+
             return PartialView();
         }
 
@@ -122,8 +121,7 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "home");
             }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            var lsThanNhan = from s in data.chitietThanNhans where s.sdtThanNhan == accountcheck.sdt select s;
-
+            var lsThanNhan = from s in data.chitietThanNhans where s.sdtThanNhan == accountcheck.sdt select s;        
             return View(lsThanNhan);
         }
 
@@ -141,7 +139,59 @@ namespace myDoctor.Controllers
             }
             return View();
         }
-        
 
+        public ActionResult doiMatKhau()
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult doiMatKhau(FormCollection collection)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            KhachHang accCheck = Session["taikhoan"] as KhachHang;
+     
+            var oldpass = collection["oldpass"];
+            var newpass = collection["newpass"];
+            var repass = collection["repass"];
+
+            if(newpass.Length < 8 || newpass.Length > 35)
+            {
+                ViewData["Loi2"] = "Mật khẩu mới phải lớn hơn 8 và bé hơn 35 kí tự";
+                return this.View();
+            }
+
+            if (oldpass.Equals(accCheck.passkh))
+            {
+              if(newpass.Equals(repass))
+                {
+
+
+                    var accChange = data.KhachHangs.Where(s=>s.idKhachHang==accCheck.idKhachHang).First<KhachHang>();
+                    accChange.passkh = newpass;
+                    data.SaveChanges();
+                    return RedirectToAction("login", "home");
+                }
+                else
+                {
+                    ViewData["Loi1"] = "Mật khẩu xác nhận không chính xác";
+                   
+                }               
+            }
+            else
+            {
+                ViewData["Loi0"] = "Mật khẩu không chính xác";
+            }
+                                               
+            return this.View();
+        }
     }
 }
