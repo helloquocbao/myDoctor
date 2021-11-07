@@ -14,7 +14,7 @@ namespace myDoctor.Controllers
 
 
         // GET: user
-        myDoctorEntities data = new myDoctorEntities();
+        myDoctorEntities1 data = new myDoctorEntities1();
         public ActionResult logout()
         {
             Session["taikhoan"] = null;
@@ -95,11 +95,14 @@ namespace myDoctor.Controllers
                     ViewData["Loi1"] = "Mối quán hệ với người thân phải từ 2 đến 30 kí tự";
                     return this.View();
                 }
-                // var check = from s in data.ThanNhans where s.sdtThanNhan == sdt select s;
-               
+
+                int check = data.chitietThanNhans.Where(n => n.idctThanNhan == idkh && n.sdtThanNhan == sdt).Count();
+                if (check == 0)
+                {
+                    try { 
                     var ctthannhan = new chitietThanNhan()
                     {
-                        
+
                         idkhachHang = idkh,
                         sdtThanNhan = sdt,
                         qHeVoiBenhNhan = mqh,
@@ -107,11 +110,34 @@ namespace myDoctor.Controllers
                     data.chitietThanNhans.Add(ctthannhan);
                     data.SaveChanges();
                     return RedirectToAction("thannhan", "user");
-              
+                    }
+                    catch(Exception ex)
+                    {
+                        return RedirectToAction("thannhan", "user");
+                    }
+                }
+                else
+                {
+                    ViewData["Loi2"] = "Bạn đã thêm mối quan hệ từ trước!";
+                    return this.View();
+                }
                 
             }
 
             return PartialView();
+        }
+
+        public ActionResult xoaThanNhan(int id)
+        {
+
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }             
+            var thanNhan = data.chitietThanNhans.Where(s => s.idctThanNhan ==id).First<chitietThanNhan>();
+            data.chitietThanNhans.Remove(thanNhan);
+            data.SaveChanges();
+            return RedirectToAction("thannhan", "user");
         }
 
         public ActionResult nguoibenh()

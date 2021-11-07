@@ -11,7 +11,7 @@ namespace myDoctor.Controllers
     public class DoctorController : Controller
     {
 
-        myDoctorEntities data = new myDoctorEntities();
+        myDoctorEntities1 data = new myDoctorEntities1();
         private List<BacSi> listBacSi()
         {
             return data.BacSis.ToList();

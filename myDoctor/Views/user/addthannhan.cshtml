@@ -7,7 +7,7 @@
 
 
 
-<form class="row contact_form" action="/user/addthannhan" method="post" novalidate="novalidate" style="width:auto; height:auto; margin-top:150px; margin-left:300px; margin-right:300px">
+<form class="row contact_form" action="/user/addthannhan" method="post" novalidate="novalidate" style="width:auto; height:auto; margin-top:40px; margin-left:240px; margin-right:300px">
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -24,6 +24,7 @@
                             <label> số điện thoại</label>
                             <input type="text" placeholder="09xxxx" class="form-control" id="sdt" name="sdt" />
                             @ViewData["Loi0"]
+                            @ViewData["Loi2"]
                         </div>
                         <div class="form-group">
                             <label>Mối quan hệ với bệnh nhân</label>

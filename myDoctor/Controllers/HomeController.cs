@@ -9,7 +9,7 @@ namespace myDoctor.Controllers
 {
     public class HomeController : Controller
     {
-        myDoctorEntities data = new myDoctorEntities();
+        myDoctorEntities1 data = new myDoctorEntities1();
         public ActionResult Index()
         {
             return View();

@@ -11,7 +11,7 @@ namespace myDoctor.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        myDoctorEntities data = new myDoctorEntities();
+        myDoctorEntities1 data = new myDoctorEntities1();
         public ActionResult Index()
         {
             if (Session["tkBacSi"] == null)

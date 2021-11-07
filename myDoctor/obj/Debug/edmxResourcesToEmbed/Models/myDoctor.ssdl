@@ -23,8 +23,6 @@
     <Property Name="urlanh" Type="varchar" MaxLength="200" />
     <Property Name="mota" Type="nvarchar" MaxLength="300" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="chitietThanNhan">
     <Key>
       <PropertyRef Name="idctThanNhan" />
@@ -249,6 +247,7 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
   <EntityContainer Name="myDoctorModelStoreContainer">
     <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chitietThanNhan" EntityType="Self.chitietThanNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietThuoc" EntityType="Self.ChiTietThuoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HocVi" EntityType="Self.HocVi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
@@ -258,14 +257,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ThanNhan" EntityType="Self.ThanNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="chitietThanNhan" EntityType="Self.chitietThanNhan" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [chitietThanNhan].[idctThanNhan] AS [idctThanNhan], 
-    [chitietThanNhan].[sdtThanNhan] AS [sdtThanNhan], 
-    [chitietThanNhan].[idkhachHang] AS [idkhachHang], 
-    [chitietThanNhan].[qHeVoiBenhNhan] AS [qHeVoiBenhNhan]
-    FROM [dbo].[chitietThanNhan] AS [chitietThanNhan]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK__BacSi__idHocVi__2B3F6F97" Association="Self.FK__BacSi__idHocVi__2B3F6F97">
       <End Role="HocVi" EntitySet="HocVi" />
       <End Role="BacSi" EntitySet="BacSi" />

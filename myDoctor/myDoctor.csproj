@@ -844,6 +844,7 @@
     <Content Include="Views\Admin\xemKetQua.cshtml" />
     <Content Include="Views\user\doiMatKhau.cshtml" />
     <Content Include="Views\user\addthannhan.cshtml" />
+    <Content Include="Views\user\xoaThanNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

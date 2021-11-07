@@ -28,8 +28,6 @@
           <Property Name="urlanh" Type="varchar" MaxLength="200" />
           <Property Name="mota" Type="nvarchar" MaxLength="300" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="chitietThanNhan">
           <Key>
             <PropertyRef Name="idctThanNhan" />
@@ -254,6 +252,7 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
         <EntityContainer Name="myDoctorModelStoreContainer">
           <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitietThanNhan" EntityType="Self.chitietThanNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietThuoc" EntityType="Self.ChiTietThuoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HocVi" EntityType="Self.HocVi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
@@ -263,14 +262,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanNhan" EntityType="Self.ThanNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="chitietThanNhan" EntityType="Self.chitietThanNhan" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [chitietThanNhan].[idctThanNhan] AS [idctThanNhan], 
-    [chitietThanNhan].[sdtThanNhan] AS [sdtThanNhan], 
-    [chitietThanNhan].[idkhachHang] AS [idkhachHang], 
-    [chitietThanNhan].[qHeVoiBenhNhan] AS [qHeVoiBenhNhan]
-    FROM [dbo].[chitietThanNhan] AS [chitietThanNhan]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__BacSi__idHocVi__2B3F6F97" Association="Self.FK__BacSi__idHocVi__2B3F6F97">
             <End Role="HocVi" EntitySet="HocVi" />
             <End Role="BacSi" EntitySet="BacSi" />
@@ -343,6 +334,17 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
           <Property Name="urlanh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="mota" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK__benhAn__idKhachH__267ABA7A" FromRole="benhAn" ToRole="KhachHang" />
+        </EntityType>
+        <EntityType Name="chitietThanNhan">
+          <Key>
+            <PropertyRef Name="idctThanNhan" />
+          </Key>
+          <Property Name="idctThanNhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sdtThanNhan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="idkhachHang" Type="Int32" />
+          <Property Name="qHeVoiBenhNhan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK__chitietTh__idkha__49C3F6B7" FromRole="chitietThanNhan" ToRole="KhachHang" />
+          <NavigationProperty Name="ThanNhan" Relationship="Self.FK__chitietTh__sdtTh__48CFD27E" FromRole="chitietThanNhan" ToRole="ThanNhan" />
         </EntityType>
         <EntityType Name="ChiTietThuoc">
           <Key>
@@ -450,17 +452,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
           <Property Name="mota" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietThuocs" Relationship="Self.FK__ChiTietTh__idthu__3A81B327" FromRole="Thuoc" ToRole="ChiTietThuoc" />
         </EntityType>
-        <EntityType Name="chitietThanNhan">
-          <Key>
-            <PropertyRef Name="idctThanNhan" />
-          </Key>
-          <Property Name="idctThanNhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sdtThanNhan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="idkhachHang" Type="Int32" />
-          <Property Name="qHeVoiBenhNhan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="KhachHang" Relationship="Self.FK__chitietTh__idkha__49C3F6B7" FromRole="chitietThanNhan" ToRole="KhachHang" />
-          <NavigationProperty Name="ThanNhan" Relationship="Self.FK__chitietTh__sdtTh__48CFD27E" FromRole="chitietThanNhan" ToRole="ThanNhan" />
-        </EntityType>
         <Association Name="FK__BacSi__idHocVi__2B3F6F97">
           <End Role="HocVi" Type="Self.HocVi" Multiplicity="0..1" />
           <End Role="BacSi" Type="Self.BacSi" Multiplicity="*" />
@@ -509,6 +500,30 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__chitietTh__idkha__49C3F6B7">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="chitietThanNhan" Type="Self.chitietThanNhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="idKhachHang" />
+            </Principal>
+            <Dependent Role="chitietThanNhan">
+              <PropertyRef Name="idkhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietTh__sdtTh__48CFD27E">
+          <End Role="ThanNhan" Type="Self.ThanNhan" Multiplicity="0..1" />
+          <End Role="chitietThanNhan" Type="Self.chitietThanNhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThanNhan">
+              <PropertyRef Name="sdtThanNhan" />
+            </Principal>
+            <Dependent Role="chitietThanNhan">
+              <PropertyRef Name="sdtThanNhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ChiTietTh__idKet__398D8EEE">
           <End Role="KetQuaKham" Type="Self.KetQuaKham" Multiplicity="0..1" />
           <End Role="ChiTietThuoc" Type="Self.ChiTietThuoc" Multiplicity="*" />
@@ -545,18 +560,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietTh__idkha__49C3F6B7">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
-          <End Role="chitietThanNhan" Type="Self.chitietThanNhan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KhachHang">
-              <PropertyRef Name="idKhachHang" />
-            </Principal>
-            <Dependent Role="chitietThanNhan">
-              <PropertyRef Name="idkhachHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__LichKham__idKhac__2F10007B">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="LichKham" Type="Self.LichKham" Multiplicity="*" />
@@ -569,21 +572,10 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietTh__sdtTh__48CFD27E">
-          <End Role="ThanNhan" Type="Self.ThanNhan" Multiplicity="0..1" />
-          <End Role="chitietThanNhan" Type="Self.chitietThanNhan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ThanNhan">
-              <PropertyRef Name="sdtThanNhan" />
-            </Principal>
-            <Dependent Role="chitietThanNhan">
-              <PropertyRef Name="sdtThanNhan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="myDoctorEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="myDoctorEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BacSis" EntityType="Self.BacSi" />
           <EntitySet Name="benhAns" EntityType="Self.benhAn" />
+          <EntitySet Name="chitietThanNhans" EntityType="Self.chitietThanNhan" />
           <EntitySet Name="ChiTietThuocs" EntityType="Self.ChiTietThuoc" />
           <EntitySet Name="HocVis" EntityType="Self.HocVi" />
           <EntitySet Name="KetQuaKhams" EntityType="Self.KetQuaKham" />
@@ -593,7 +585,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="ThanNhans" EntityType="Self.ThanNhan" />
           <EntitySet Name="Thuocs" EntityType="Self.Thuoc" />
-          <EntitySet Name="chitietThanNhans" EntityType="Self.chitietThanNhan" />
           <AssociationSet Name="FK__BacSi__idHocVi__2B3F6F97" Association="Self.FK__BacSi__idHocVi__2B3F6F97">
             <End Role="HocVi" EntitySet="HocVis" />
             <End Role="BacSi" EntitySet="BacSis" />
@@ -610,6 +601,14 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="benhAn" EntitySet="benhAns" />
           </AssociationSet>
+          <AssociationSet Name="FK__chitietTh__idkha__49C3F6B7" Association="Self.FK__chitietTh__idkha__49C3F6B7">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="chitietThanNhan" EntitySet="chitietThanNhans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietTh__sdtTh__48CFD27E" Association="Self.FK__chitietTh__sdtTh__48CFD27E">
+            <End Role="ThanNhan" EntitySet="ThanNhans" />
+            <End Role="chitietThanNhan" EntitySet="chitietThanNhans" />
+          </AssociationSet>
           <AssociationSet Name="FK__ChiTietTh__idKet__398D8EEE" Association="Self.FK__ChiTietTh__idKet__398D8EEE">
             <End Role="KetQuaKham" EntitySet="KetQuaKhams" />
             <End Role="ChiTietThuoc" EntitySet="ChiTietThuocs" />
@@ -622,17 +621,9 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
             <End Role="LichKham" EntitySet="LichKhams" />
             <End Role="KetQuaKham" EntitySet="KetQuaKhams" />
           </AssociationSet>
-          <AssociationSet Name="FK__chitietTh__idkha__49C3F6B7" Association="Self.FK__chitietTh__idkha__49C3F6B7">
-            <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="chitietThanNhan" EntitySet="chitietThanNhans" />
-          </AssociationSet>
           <AssociationSet Name="FK__LichKham__idKhac__2F10007B" Association="Self.FK__LichKham__idKhac__2F10007B">
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="LichKham" EntitySet="LichKhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__chitietTh__sdtTh__48CFD27E" Association="Self.FK__chitietTh__sdtTh__48CFD27E">
-            <End Role="ThanNhan" EntitySet="ThanNhans" />
-            <End Role="chitietThanNhan" EntitySet="chitietThanNhans" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -640,7 +631,7 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities">
+        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities1">
           <EntitySetMapping Name="BacSis">
             <EntityTypeMapping TypeName="myDoctorModel.BacSi">
               <MappingFragment StoreEntitySet="BacSi">
@@ -663,6 +654,16 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
                 <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
                 <ScalarProperty Name="urlanh" ColumnName="urlanh" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitietThanNhans">
+            <EntityTypeMapping TypeName="myDoctorModel.chitietThanNhan">
+              <MappingFragment StoreEntitySet="chitietThanNhan">
+                <ScalarProperty Name="idctThanNhan" ColumnName="idctThanNhan" />
+                <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
+                <ScalarProperty Name="idkhachHang" ColumnName="idkhachHang" />
+                <ScalarProperty Name="qHeVoiBenhNhan" ColumnName="qHeVoiBenhNhan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -764,16 +765,6 @@ warning 6002: The table/view 'myDoctor.dbo.chitietThanNhan' does not have a prim
                 <ScalarProperty Name="idthuoc" ColumnName="idthuoc" />
                 <ScalarProperty Name="tenthuoc" ColumnName="tenthuoc" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="chitietThanNhans">
-            <EntityTypeMapping TypeName="myDoctorModel.chitietThanNhan">
-              <MappingFragment StoreEntitySet="chitietThanNhan">
-                <ScalarProperty Name="idctThanNhan" ColumnName="idctThanNhan" />
-                <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
-                <ScalarProperty Name="idkhachHang" ColumnName="idkhachHang" />
-                <ScalarProperty Name="qHeVoiBenhNhan" ColumnName="qHeVoiBenhNhan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

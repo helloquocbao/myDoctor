@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities">
+  <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities1">
     <EntitySetMapping Name="BacSis">
       <EntityTypeMapping TypeName="myDoctorModel.BacSi">
         <MappingFragment StoreEntitySet="BacSi">
@@ -23,6 +23,16 @@
           <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
           <ScalarProperty Name="urlanh" ColumnName="urlanh" />
           <ScalarProperty Name="mota" ColumnName="mota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chitietThanNhans">
+      <EntityTypeMapping TypeName="myDoctorModel.chitietThanNhan">
+        <MappingFragment StoreEntitySet="chitietThanNhan">
+          <ScalarProperty Name="idctThanNhan" ColumnName="idctThanNhan" />
+          <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
+          <ScalarProperty Name="idkhachHang" ColumnName="idkhachHang" />
+          <ScalarProperty Name="qHeVoiBenhNhan" ColumnName="qHeVoiBenhNhan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -124,16 +134,6 @@
           <ScalarProperty Name="idthuoc" ColumnName="idthuoc" />
           <ScalarProperty Name="tenthuoc" ColumnName="tenthuoc" />
           <ScalarProperty Name="mota" ColumnName="mota" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="chitietThanNhans">
-      <EntityTypeMapping TypeName="myDoctorModel.chitietThanNhan">
-        <MappingFragment StoreEntitySet="chitietThanNhan">
-          <ScalarProperty Name="idctThanNhan" ColumnName="idctThanNhan" />
-          <ScalarProperty Name="sdtThanNhan" ColumnName="sdtThanNhan" />
-          <ScalarProperty Name="idkhachHang" ColumnName="idkhachHang" />
-          <ScalarProperty Name="qHeVoiBenhNhan" ColumnName="qHeVoiBenhNhan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
