@@ -36,15 +36,22 @@
                                 <tbody>
                                     @foreach (var i in Model)
                                     {
-                                        <tr class="gradeU">
-                                            <td>@i.idBacSi</td>
-                                            <td>@i.tenbs</td>
-                                            <td>@i.sdt</td>                                          
-                                            <td class="center">@i.quyen</td>
-                                            <td class="center">@i.motabs</td>
+                                    <tr class="gradeU">
+                                        <td>@i.idBacSi</td>
+                                        <td>@i.tenbs</td>
+                                        <td>@i.sdt</td>
+                                        @if (i.quyen == true)
+                                        {
+                                            <td class="center">Bác sĩ</td>
+}
+                                        else
+                                        {
+                                            <td class="center">Y tá</td>
+}
+                                        <td class="center">@i.motabs</td>
 
-                                            <td><a href="#">Xem</a></td>
-                                        </tr>
+                                        <td><a href="#">Xem</a></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

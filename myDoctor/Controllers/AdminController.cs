@@ -2,6 +2,7 @@
 using myDoctor.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -85,6 +86,40 @@ namespace myDoctor.Controllers
             return View(account.Single());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult account(HttpPostedFileBase fileupload)
+        { 
+            BacSi bs = Session["tkBacSi"] as BacSi;
+            if (fileupload == null)
+            {
+                ViewBag.ThongBao = "Vui lòng chọn ảnh";
+                return View();
+            }
+            else
+            {
+                if(ModelState.IsValid)
+                {
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/hinhbacsi"), fileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.ThongBao = "Hình ảnh đã tồn tại";                           
+                    }
+                    else
+                    {
+                        fileupload.SaveAs(path);
+
+                    }
+                    bs.urlanh = fileName;
+                    UpdateModel(bs);
+                    data.SaveChanges();
+                }
+                return RedirectToAction("account");
+            }
+         
+        }
+
         public ActionResult lichKham()
         {
             if (Session["tkBacSi"] == null)
@@ -131,6 +166,7 @@ namespace myDoctor.Controllers
             
             return View(ketQua);
         }
+
 
     }
 }

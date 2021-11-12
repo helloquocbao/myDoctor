@@ -1,4 +1,5 @@
 ﻿using myDoctor.Models;
+using myDoctor.Models.ViewModel;
 using System;
 
 using System.Data.SqlClient;
@@ -50,7 +51,21 @@ namespace myDoctor.Controllers
             {
                 return RedirectToAction("login", "home");
             }
-            var chitet = from s in data.KetQuaKhams where s.idDatLich == id select s;
+            var chitet = from s in data.KetQuaKhams 
+                         join c in data.LichKhams on s.idDatLich equals c.idDatLich
+                         join a in data.BacSis on c.idBacSi equals a.idBacSi
+                         where s.idDatLich == id && c.idDatLich == s.idDatLich && a.idBacSi == c.idBacSi
+                         select new KetQuaKhamViewModel
+                         {
+                             idDatLich = c.idDatLich,
+                             idKetQua = s.idKetQua,
+                             idBacSi = a.idBacSi,
+                             tenbs = a.tenbs,
+                             ketqua = s.ketqua,
+                             hdthuoc = s.hdthuoc,
+                             tienkham = s.tienkham,
+                             ChuyenKhoa = a.HocVi.ChuyenKhoa,
+                         };
 
             return PartialView(chitet.Single());
         }
