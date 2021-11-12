@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using myDoctor.Models;
@@ -9,7 +11,10 @@ namespace myDoctor.Controllers
 {
     public class HomeController : Controller
     {
-        myDoctorEntities1 data = new myDoctorEntities1();
+        myDoctorEntities3 data = new myDoctorEntities3();
+        
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -17,7 +22,7 @@ namespace myDoctor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(FormCollection collection, LichKham dl)
+        public ActionResult Index(FormCollection collection, LichKham dl, HttpPostedFileBase fileUpload)
         {
             if (Session["taikhoan"] == null)
             {
@@ -27,14 +32,26 @@ namespace myDoctor.Controllers
             {
                 try
                 {
-                    KhachHang accountcheck = Session["taikhoan"] as KhachHang;                  
+                    KhachHang accountcheck = Session["taikhoan"] as KhachHang;
                     var idkh = accountcheck.idKhachHang;
                     int idbs = int.Parse(collection["bacsi"]);
                     int atuoi = int.Parse(collection["tuoi"]);
                     string ngay = collection["datetime"];
                     string hoten = collection["hoten"];
                     var mota = collection["mota"];
-                    if (ngay == null || hoten.Length==0|| atuoi == null)
+                    string anh;
+                    if(fileUpload == null) {
+                         anh = null;
+                    }
+                    else
+                    {
+                        string strDateTime = System.DateTime.Now.ToString("ddMMyyyyHHMMss");
+                        string path = Path.Combine(Server.MapPath("~/HinhAnh/"), strDateTime + Path.GetFileName(fileUpload.FileName));
+                         anh = path;
+                        fileUpload.SaveAs(path);
+                    }
+
+                    if (ngay == null || hoten.Length == 0 || atuoi == null)
                     {
                         ViewData["Loi3"] = "Vui lòng điền đầy đủ thông tin";
                         return View();
@@ -43,7 +60,7 @@ namespace myDoctor.Controllers
                     {
                         DateTime datee = DateTime.Parse(ngay);
 
-                        if(atuoi <= 3)
+                        if (atuoi <= 3)
                         {
                             ViewData["Loi11"] = "Xin lỗi phòng khám chỉ khám trẻ trên 3 tuổi";
                             return View();
@@ -58,9 +75,10 @@ namespace myDoctor.Controllers
                         dl.idKhachHang = idkh;
                         dl.ngaydat = datee;
                         dl.trieuchung = mota;
+                        dl.anhchitiet = anh;
                         data.LichKhams.Add(dl);
                         data.SaveChanges();
-                       
+
                         ViewData["Loi2"] = "Đặt lịch thành công, bạn có thể kiểm tra trong thông tin cá nhân";
                         return Redirect("~/user/lichkham");
                     }
@@ -72,6 +90,7 @@ namespace myDoctor.Controllers
             }
             return View();
         }
+
 
         public ActionResult login()
         {

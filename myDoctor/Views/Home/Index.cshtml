@@ -82,7 +82,8 @@
 <div class="page-section">
     <div class="container" id="lichkham">
         <h1 class="text-center wow fadeInUp" id="#2">Đặt lịch</h1>
-        <form class="main-form" action="~/home/index" method="post" novalidate="novalidate">
+        @using (Html.BeginForm("Index", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             @ViewData["Loi3"]
@@ -99,7 +100,7 @@
                     <input type="datetime-local" class="form-control" name="datetime">
                     @ViewData["Loi1"]
                 </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">              
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
                     <select name="bacsi" class="form-control">
                         <option value="1">Lê Hồ Quốc Bảo</option>
                         <option value="2">Phùng A Bin</option>
@@ -109,88 +110,93 @@
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
                     <textarea name="mota" class="form-control" rows="6" placeholder="Mô tả triệu chứng.."></textarea>
                 </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                    <label>Ảnh chi tiết</label>
+                    <input type="file" class="form-control" name="fileUpload">
+
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Đặt lịch hẹn</button>
-        </form>
-
-
-    </div>
-</div> <!-- .page-section -->
-
-<div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
-    <div class="container py-5 py-lg-0">
-        <div class="row align-items-center">
-            <div class="col-lg-4 wow zoomIn">
-                <div class="img-banner d-none d-lg-block">
-                    <img src="../assets/img/mobile_app.png" alt="">
-                </div>
-            </div>
-            <div class="col-lg-8 wow fadeInRight">
-                <h1 class="font-weight-normal mb-3">
-                    Dễ dàng sử dụng, dễ dàng đặt lịch
-                </h1>
-                <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
-                <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
-            </div>
-        </div>
-    </div>
-</div> <!-- .banner-home -->
-<style>
-    .dathen .wpcf7-form-control-wrap .wpcf7-select,
-    .dathen .wpcf7-form-control-wrap .wpcf7-text,
-    .dathen .wpcf7-form-control-wrap .wpcf7-textarea {
-        padding: 8px 15px;
-        font-style: italic;
-        border-radius: 5px;
-    }
-
-    .wpcf7 form .wpcf7-response-output {
-        margin: 0em 0.5em 1em;
-    }
-
-    .dathen .wpcf7-form-control-wrap .wpcf7-textarea {
-        height: 150px;
-    }
-
-    .dathen .wpcf7-form-control-wrap .wpcf7-select {
-        height: 42px;
-    }
-
-    .dathen .wpcf7-form-control-wrap {
-        margin-bottom: 15px;
-    }
-
-    .dathen .wpcf7-submit {
-        border-radius: 5px;
-        background-color: #e6af5f;
-        font-weight: 600;
-        transition: 0.3s;
-        box-shadow: 1px 1px 1px;
-    }
-
-        .dathen .wpcf7-submit:hover {
-            background: #efb96d;
         }
 
-    .sgpb-popup-builder-content-204 .wpcf7 .wpcf7-response-output {
-        font-size: 14px;
-        text-align: center;
-        color: #fff;
-        background: #cf9d55;
-        border-width: 1px;
-        padding: 5px;
-    }
 
-    .dlk-col-2 .box-icon.box-icon-style-circle {
-        box-shadow: 0px 1px 10px 5px rgba(255, 255, 255, 0.5);
-    }
+        </div>
+    </div> <!-- .page-section -->
 
-    .dathen .vc_row {
-        margin: 0;
-    }
+    <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
+        <div class="container py-5 py-lg-0">
+            <div class="row align-items-center">
+                <div class="col-lg-4 wow zoomIn">
+                    <div class="img-banner d-none d-lg-block">
+                        <img src="../assets/img/mobile_app.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-8 wow fadeInRight">
+                    <h1 class="font-weight-normal mb-3">
+                        Dễ dàng sử dụng, dễ dàng đặt lịch
+                    </h1>
+                    <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
+                    <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .banner-home -->
+    <style>
+        .dathen .wpcf7-form-control-wrap .wpcf7-select,
+        .dathen .wpcf7-form-control-wrap .wpcf7-text,
+        .dathen .wpcf7-form-control-wrap .wpcf7-textarea {
+            padding: 8px 15px;
+            font-style: italic;
+            border-radius: 5px;
+        }
 
-    .xdsoft_datetimepicker.xdsoft_noselect.xdsoft_default {
-        z-index: 2147483647;
-    }
-</style>
+        .wpcf7 form .wpcf7-response-output {
+            margin: 0em 0.5em 1em;
+        }
+
+        .dathen .wpcf7-form-control-wrap .wpcf7-textarea {
+            height: 150px;
+        }
+
+        .dathen .wpcf7-form-control-wrap .wpcf7-select {
+            height: 42px;
+        }
+
+        .dathen .wpcf7-form-control-wrap {
+            margin-bottom: 15px;
+        }
+
+        .dathen .wpcf7-submit {
+            border-radius: 5px;
+            background-color: #e6af5f;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 1px 1px 1px;
+        }
+
+            .dathen .wpcf7-submit:hover {
+                background: #efb96d;
+            }
+
+        .sgpb-popup-builder-content-204 .wpcf7 .wpcf7-response-output {
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            background: #cf9d55;
+            border-width: 1px;
+            padding: 5px;
+        }
+
+        .dlk-col-2 .box-icon.box-icon-style-circle {
+            box-shadow: 0px 1px 10px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .dathen .vc_row {
+            margin: 0;
+        }
+
+        .xdsoft_datetimepicker.xdsoft_noselect.xdsoft_default {
+            z-index: 2147483647;
+        }
+    </style>

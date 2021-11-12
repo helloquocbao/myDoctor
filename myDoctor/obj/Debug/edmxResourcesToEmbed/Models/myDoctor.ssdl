@@ -84,19 +84,7 @@
     <Property Name="ngaydat" Type="datetime" />
     <Property Name="trieuchung" Type="nvarchar" MaxLength="100" />
     <Property Name="tinhTrang" Type="bit" />
-  </EntityType>
-  <EntityType Name="LichKhamNhap">
-    <Key>
-      <PropertyRef Name="idDatLichNhap" />
-    </Key>
-    <Property Name="idDatLichNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idBacSi" Type="int" />
-    <Property Name="hoten" Type="nvarchar" MaxLength="40" />
-    <Property Name="tuoi" Type="int" />
-    <Property Name="sdt" Type="varchar" MaxLength="15" />
-    <Property Name="ngaydat" Type="datetime" />
-    <Property Name="trieuchung" Type="nvarchar" MaxLength="100" />
-    <Property Name="tinhTrang" Type="bit" />
+    <Property Name="anhchitiet" Type="varchar" MaxLength="90" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -232,18 +220,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LichKhamN__idBac__31EC6D26">
-    <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
-    <End Role="LichKhamNhap" Type="Self.LichKhamNhap" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BacSi">
-        <PropertyRef Name="idBacSi" />
-      </Principal>
-      <Dependent Role="LichKhamNhap">
-        <PropertyRef Name="idBacSi" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="myDoctorModelStoreContainer">
     <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
@@ -253,7 +229,6 @@
     <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LichKham" EntityType="Self.LichKham" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LichKhamNhap" EntityType="Self.LichKhamNhap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ThanNhan" EntityType="Self.ThanNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
@@ -292,10 +267,6 @@
     <AssociationSet Name="FK__LichKham__idKhac__2F10007B" Association="Self.FK__LichKham__idKhac__2F10007B">
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="LichKham" EntitySet="LichKham" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LichKhamN__idBac__31EC6D26" Association="Self.FK__LichKhamN__idBac__31EC6D26">
-      <End Role="BacSi" EntitySet="BacSi" />
-      <End Role="LichKhamNhap" EntitySet="LichKhamNhap" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

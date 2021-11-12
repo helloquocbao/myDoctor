@@ -18,7 +18,6 @@ namespace myDoctor.Models
         public BacSi()
         {
             this.LichKhams = new HashSet<LichKham>();
-            this.LichKhamNhaps = new HashSet<LichKhamNhap>();
         }
     
         public int idBacSi { get; set; }
@@ -34,7 +33,5 @@ namespace myDoctor.Models
         public virtual HocVi HocVi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichKham> LichKhams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichKhamNhap> LichKhamNhaps { get; set; }
     }
 }

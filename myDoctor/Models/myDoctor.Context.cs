@@ -13,10 +13,10 @@ namespace myDoctor.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class myDoctorEntities1 : DbContext
+    public partial class myDoctorEntities3 : DbContext
     {
-        public myDoctorEntities1()
-            : base("name=myDoctorEntities1")
+        public myDoctorEntities3()
+            : base("name=myDoctorEntities3")
         {
         }
     
@@ -33,7 +33,6 @@ namespace myDoctor.Models
         public virtual DbSet<KetQuaKham> KetQuaKhams { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<LichKham> LichKhams { get; set; }
-        public virtual DbSet<LichKhamNhap> LichKhamNhaps { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanNhan> ThanNhans { get; set; }
         public virtual DbSet<Thuoc> Thuocs { get; set; }

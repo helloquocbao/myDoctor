@@ -89,19 +89,7 @@
           <Property Name="ngaydat" Type="datetime" />
           <Property Name="trieuchung" Type="nvarchar" MaxLength="100" />
           <Property Name="tinhTrang" Type="bit" />
-        </EntityType>
-        <EntityType Name="LichKhamNhap">
-          <Key>
-            <PropertyRef Name="idDatLichNhap" />
-          </Key>
-          <Property Name="idDatLichNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idBacSi" Type="int" />
-          <Property Name="hoten" Type="nvarchar" MaxLength="40" />
-          <Property Name="tuoi" Type="int" />
-          <Property Name="sdt" Type="varchar" MaxLength="15" />
-          <Property Name="ngaydat" Type="datetime" />
-          <Property Name="trieuchung" Type="nvarchar" MaxLength="100" />
-          <Property Name="tinhTrang" Type="bit" />
+          <Property Name="anhchitiet" Type="varchar" MaxLength="90" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -237,18 +225,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichKhamN__idBac__31EC6D26">
-          <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
-          <End Role="LichKhamNhap" Type="Self.LichKhamNhap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BacSi">
-              <PropertyRef Name="idBacSi" />
-            </Principal>
-            <Dependent Role="LichKhamNhap">
-              <PropertyRef Name="idBacSi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="myDoctorModelStoreContainer">
           <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="benhAn" EntityType="Self.benhAn" Schema="dbo" store:Type="Tables" />
@@ -258,7 +234,6 @@
           <EntitySet Name="KetQuaKham" EntityType="Self.KetQuaKham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LichKham" EntityType="Self.LichKham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LichKhamNhap" EntityType="Self.LichKhamNhap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanNhan" EntityType="Self.ThanNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
@@ -298,10 +273,6 @@
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="LichKham" EntitySet="LichKham" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichKhamN__idBac__31EC6D26" Association="Self.FK__LichKhamN__idBac__31EC6D26">
-            <End Role="BacSi" EntitySet="BacSi" />
-            <End Role="LichKhamNhap" EntitySet="LichKhamNhap" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -323,7 +294,6 @@
           <Property Name="quyen" Type="Boolean" />
           <NavigationProperty Name="HocVi" Relationship="Self.FK__BacSi__idHocVi__2B3F6F97" FromRole="BacSi" ToRole="HocVi" />
           <NavigationProperty Name="LichKhams" Relationship="Self.FK__LichKham__idBacS__2E1BDC42" FromRole="BacSi" ToRole="LichKham" />
-          <NavigationProperty Name="LichKhamNhaps" Relationship="Self.FK__LichKhamN__idBac__31EC6D26" FromRole="BacSi" ToRole="LichKhamNhap" />
         </EntityType>
         <EntityType Name="benhAn">
           <Key>
@@ -406,23 +376,10 @@
           <Property Name="ngaydat" Type="DateTime" Precision="3" />
           <Property Name="trieuchung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="tinhTrang" Type="Boolean" />
+          <Property Name="anhchitiet" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BacSi" Relationship="Self.FK__LichKham__idBacS__2E1BDC42" FromRole="LichKham" ToRole="BacSi" />
           <NavigationProperty Name="KetQuaKhams" Relationship="Self.FK__KetQuaKha__idDat__34C8D9D1" FromRole="LichKham" ToRole="KetQuaKham" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK__LichKham__idKhac__2F10007B" FromRole="LichKham" ToRole="KhachHang" />
-        </EntityType>
-        <EntityType Name="LichKhamNhap">
-          <Key>
-            <PropertyRef Name="idDatLichNhap" />
-          </Key>
-          <Property Name="idDatLichNhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idBacSi" Type="Int32" />
-          <Property Name="hoten" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="tuoi" Type="Int32" />
-          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="ngaydat" Type="DateTime" Precision="3" />
-          <Property Name="trieuchung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="tinhTrang" Type="Boolean" />
-          <NavigationProperty Name="BacSi" Relationship="Self.FK__LichKhamN__idBac__31EC6D26" FromRole="LichKhamNhap" ToRole="BacSi" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -472,18 +429,6 @@
               <PropertyRef Name="idBacSi" />
             </Principal>
             <Dependent Role="LichKham">
-              <PropertyRef Name="idBacSi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__LichKhamN__idBac__31EC6D26">
-          <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
-          <End Role="LichKhamNhap" Type="Self.LichKhamNhap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BacSi">
-              <PropertyRef Name="idBacSi" />
-            </Principal>
-            <Dependent Role="LichKhamNhap">
               <PropertyRef Name="idBacSi" />
             </Dependent>
           </ReferentialConstraint>
@@ -572,7 +517,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="myDoctorEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="myDoctorEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BacSis" EntityType="Self.BacSi" />
           <EntitySet Name="benhAns" EntityType="Self.benhAn" />
           <EntitySet Name="chitietThanNhans" EntityType="Self.chitietThanNhan" />
@@ -581,7 +526,6 @@
           <EntitySet Name="KetQuaKhams" EntityType="Self.KetQuaKham" />
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="LichKhams" EntityType="Self.LichKham" />
-          <EntitySet Name="LichKhamNhaps" EntityType="Self.LichKhamNhap" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="ThanNhans" EntityType="Self.ThanNhan" />
           <EntitySet Name="Thuocs" EntityType="Self.Thuoc" />
@@ -592,10 +536,6 @@
           <AssociationSet Name="FK__LichKham__idBacS__2E1BDC42" Association="Self.FK__LichKham__idBacS__2E1BDC42">
             <End Role="BacSi" EntitySet="BacSis" />
             <End Role="LichKham" EntitySet="LichKhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__LichKhamN__idBac__31EC6D26" Association="Self.FK__LichKhamN__idBac__31EC6D26">
-            <End Role="BacSi" EntitySet="BacSis" />
-            <End Role="LichKhamNhap" EntitySet="LichKhamNhaps" />
           </AssociationSet>
           <AssociationSet Name="FK__benhAn__idKhachH__267ABA7A" Association="Self.FK__benhAn__idKhachH__267ABA7A">
             <End Role="KhachHang" EntitySet="KhachHangs" />
@@ -631,7 +571,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities1">
+        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities3">
           <EntitySetMapping Name="BacSis">
             <EntityTypeMapping TypeName="myDoctorModel.BacSi">
               <MappingFragment StoreEntitySet="BacSi">
@@ -722,20 +662,7 @@
                 <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
                 <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
                 <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LichKhamNhaps">
-            <EntityTypeMapping TypeName="myDoctorModel.LichKhamNhap">
-              <MappingFragment StoreEntitySet="LichKhamNhap">
-                <ScalarProperty Name="idDatLichNhap" ColumnName="idDatLichNhap" />
-                <ScalarProperty Name="idBacSi" ColumnName="idBacSi" />
-                <ScalarProperty Name="hoten" ColumnName="hoten" />
-                <ScalarProperty Name="tuoi" ColumnName="tuoi" />
-                <ScalarProperty Name="sdt" ColumnName="sdt" />
-                <ScalarProperty Name="ngaydat" ColumnName="ngaydat" />
-                <ScalarProperty Name="trieuchung" ColumnName="trieuchung" />
-                <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+                <ScalarProperty Name="anhchitiet" ColumnName="anhchitiet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

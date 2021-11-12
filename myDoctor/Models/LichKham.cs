@@ -28,6 +28,7 @@ namespace myDoctor.Models
         public Nullable<System.DateTime> ngaydat { get; set; }
         public string trieuchung { get; set; }
         public Nullable<bool> tinhTrang { get; set; }
+        public string anhchitiet { get; set; }
     
         public virtual BacSi BacSi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

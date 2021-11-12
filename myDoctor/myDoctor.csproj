@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -161,9 +161,6 @@
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LichKham.cs">
-      <DependentUpon>myDoctor.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LichKhamNhap.cs">
       <DependentUpon>myDoctor.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\myDoctor.Context.cs">
@@ -829,7 +826,6 @@
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\package.json" />
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\README.md" />
     <Content Include="Views\Admin\account.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\user\lichkham.cshtml" />
     <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -845,11 +841,12 @@
     <Content Include="Views\user\doiMatKhau.cshtml" />
     <Content Include="Views\user\addthannhan.cshtml" />
     <Content Include="Views\user\xoaThanNhan.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\assets\plugins\" />
-    <Folder Include="Content\hinhbacsi\" />
+    <Folder Include="HinhAnh\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
