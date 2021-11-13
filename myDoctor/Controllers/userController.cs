@@ -168,9 +168,23 @@ namespace myDoctor.Controllers
 
         public ActionResult thongtinbenhnhan(int id)
         {
-
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idKhachHang == id).ToList());
         }
+
+        public ActionResult xemAnhThongTinBenh(int id)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            var lichkham = from s in data.LichKhams where s.idDatLich == id select s;
+            return View(lichkham.Single());
+        }
+
 
         public ActionResult video_call()
         {

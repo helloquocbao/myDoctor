@@ -55,14 +55,17 @@
                                 <td>@i.ngaydat</td>
                                 <td>@i.BacSi.tenbs</td>
                                 <td>@i.hoten</td>
-                                <td>@i.trieuchung</td>
-                                
+                                <td>
+                                   
+                                    <a href="@Url.Action("xemanhthongtinbenh","user",new {id =i.idDatLich})" style="color: #B22428 "> @i.trieuchung</a>
+                                </td>
+
                                 @if (i.tinhTrang == true)
                                 {
                                     <td>
 
                                         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                                            <button type="button" class="btn-block" style="width:225px">Xem kết quả </button>
+                                            <a type="button" class="btn-block" style="width:225px"><label>Xem kết quả</label> </a>
                                             <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("xemketqua","user",new {id =i.idDatLich })'></div>
 
                                             <script type="text/javascript">

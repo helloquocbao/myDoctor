@@ -47,11 +47,11 @@ namespace myDoctor.Controllers
                     {
                         string strDateTime = System.DateTime.Now.ToString("ddMMyyyyHHMMss");
                         string path = Path.Combine(Server.MapPath("~/HinhAnh/"), strDateTime + Path.GetFileName(fileUpload.FileName));
-                         anh = path;
+                         anh = strDateTime + Path.GetFileName(fileUpload.FileName);
                         fileUpload.SaveAs(path);
                     }
 
-                    if (ngay == null || hoten.Length == 0 || atuoi == null)
+                    if (ngay == null || hoten.Length == 0 || atuoi == null || mota.Length == 0)
                     {
                         ViewData["Loi3"] = "Vui lòng điền đầy đủ thông tin";
                         return View();
@@ -77,6 +77,7 @@ namespace myDoctor.Controllers
                         dl.trieuchung = mota;
                         dl.anhchitiet = anh;
                         data.LichKhams.Add(dl);
+                        dl.tinhTrang = false;
                         data.SaveChanges();
 
                         ViewData["Loi2"] = "Đặt lịch thành công, bạn có thể kiểm tra trong thông tin cá nhân";

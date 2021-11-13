@@ -842,6 +842,7 @@
     <Content Include="Views\user\addthannhan.cshtml" />
     <Content Include="Views\user\xoaThanNhan.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\user\xemAnhThongTinBenh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

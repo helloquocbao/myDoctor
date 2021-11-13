@@ -1,0 +1,33 @@
+﻿
+
+@{
+    ViewBag.Title = "xemAnhThongTinBenh";
+    Layout = "~/Views/Shared/LayoutAccount.cshtml";
+}
+
+@model myDoctor.Models.LichKham
+
+
+<div style="width: 630px; height: 800px; margin-top: 10px; margin-left: auto; margin-right: auto; margin-bottom:150px ">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <a href="~/user/lichkham"> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
+           
+            <h4 class="modal-title" style="font-size:20px; text-align:center; font-weight:bold" id="myModal-label">Hình ảnh chi tiết</h4>
+
+            <br />
+            <img src="~/HinhAnh/@Model.anhchitiet" style="max-height: 600px; max-width: 600px; border: 5px solid #555;" />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <div style="height: 80px; width: 630px">
+                <label>Thông tin triệu chứng: </label> <br />
+                 Bệnh nhân có triệu chứng @Model.trieuchung
+            </div>
+        </div>
+    </div>
+  
+</div>
