@@ -825,7 +825,6 @@
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\LICENSE" />
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\package.json" />
     <Content Include="Scripts\plugins\bower_components\sidebar-nav\README.md" />
-    <Content Include="Views\Admin\account.cshtml" />
     <Content Include="Views\user\lichkham.cshtml" />
     <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\sc2\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -843,11 +842,15 @@
     <Content Include="Views\user\xoaThanNhan.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\user\xemAnhThongTinBenh.cshtml" />
+    <Content Include="Views\Admin\taikhoanDK.cshtml" />
+    <Content Include="Views\Admin\account.cshtml" />
+    <Content Include="Views\Admin\ghiketqua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\assets\plugins\" />
     <Folder Include="HinhAnh\" />
+    <Folder Include="hinhbacsi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

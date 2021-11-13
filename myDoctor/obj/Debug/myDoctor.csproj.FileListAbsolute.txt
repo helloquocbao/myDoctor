@@ -72,7 +72,6 @@ C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\System.Web.WebPages.Razor.xml
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\Newtonsoft.Json.xml
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\Antlr3.Runtime.pdb
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\obj\Debug\myDoctor.csproj.AssemblyReference.cache
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\obj\Debug\myDoctor.csproj.CoreCompileInputs.cache
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\obj\Debug\myDoctor.csproj.CopyComplete
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\obj\Debug\myDoctor.dll
