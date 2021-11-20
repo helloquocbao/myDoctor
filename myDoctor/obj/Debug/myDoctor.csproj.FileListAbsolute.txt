@@ -80,3 +80,4 @@ C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\EntityFramework.dll
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\EntityFramework.SqlServer.dll
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\EntityFramework.xml
 C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\bin\EntityFramework.SqlServer.xml
+C:\Users\Quoc Bao\Desktop\myDoctor\myDoctor\obj\Debug\myDoctor.csproj.AssemblyReference.cache

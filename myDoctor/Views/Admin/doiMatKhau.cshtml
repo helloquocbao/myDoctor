@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "doiMatKhau";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<form class="row contact_form" action="/admin/doiMatKhau" method="post" novalidate="novalidate" style="width:auto; height:auto; margin-top:100px; margin-left:300px; margin-right:300px">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModal-label">Thay đổi mật khẩu</h4>
+
+                <div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label> Mật khẩu cũ</label>
+                            <input type="password" class="form-control" id="oldpass" name="oldpass" />
+                            <span style="color:red"> @ViewData["Loi0"]</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu mới</label>
+                            <input type="password" class="form-control" id="newpass" name="newpass" />
+                            <span style="color:red"> @ViewData["Loi2"]</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Xác nhận mật khẩu mới</label>
+                            <input type="password" class="form-control" id="repass" name="repass" />
+                            <span style="color:red"> @ViewData["Loi1"]</span>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-success">
+                            Xác nhận thay đổi</buttonty>
+                            <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

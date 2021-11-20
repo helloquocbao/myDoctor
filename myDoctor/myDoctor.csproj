@@ -845,6 +845,11 @@
     <Content Include="Views\Admin\taikhoanDK.cshtml" />
     <Content Include="Views\Admin\account.cshtml" />
     <Content Include="Views\Admin\ghiketqua.cshtml" />
+    <Content Include="Views\Admin\xemAnhThongTinBenh.cshtml" />
+    <Content Include="Views\Admin\doiMatKhau.cshtml" />
+    <Content Include="Views\Admin\lichdakham.cshtml" />
+    <Content Include="Views\Admin\chitietbs.cshtml" />
+    <Content Include="Views\Admin\thembacsi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

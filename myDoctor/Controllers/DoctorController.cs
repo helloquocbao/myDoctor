@@ -24,6 +24,12 @@ namespace myDoctor.Controllers
             return View(listbs);
         }
 
+        public ActionResult ThongtinBacSi(int id)
+        {
+
+
+            return View();
+        }
 
     }
 }

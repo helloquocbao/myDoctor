@@ -90,7 +90,7 @@ namespace myDoctor.Controllers
             {
                 return RedirectToAction("login", "admin");
             }
-            BacSi accountcheck = Session["tkBacSi"] as BacSi;           
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
             var account = from p in data.BacSis where p.idBacSi == accountcheck.idBacSi select p;
             return View(account);
         }
@@ -122,7 +122,7 @@ namespace myDoctor.Controllers
                 anh = strDateTime + Path.GetFileName(fileUpload.FileName);
                 fileUpload.SaveAs(path);
             }
-            if (hoten == null || email == null || mota == null || pass== null)
+            if (hoten == null || email == null || mota == null || pass == null)
             {
                 ViewData["Loi0"] = "Vui lòng điền đầy đủ thông tin";
                 return RedirectToAction("account", "admin");
@@ -138,13 +138,13 @@ namespace myDoctor.Controllers
                     acc.motabs = mota;
                     acc.idHocVi = 1;
                     data.SaveChanges();
-                   ;
+                    ;
                 }
                 else
                 {
                     ViewData["Loi1"] = "Sai mật khẩu!, vui lòng thử lại";
                     return RedirectToAction("account", "admin");
-                }                            
+                }
             }
 
             return RedirectToAction("index", "admin");
@@ -158,8 +158,19 @@ namespace myDoctor.Controllers
             }
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
 
-        
-            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now).ToList());
+
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now && a.tinhTrang == false).ToList());
+        }
+        public ActionResult lichdakham()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
+
+
+            return View(data.LichKhams.Where(a => a.tinhTrang == true && a.idBacSi == accountcheck.idBacSi).ToList());
         }
 
 
@@ -170,7 +181,7 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "admin");
             }
             return View();
-         }
+        }
 
         public ActionResult xemKetQua(int id)
         {
@@ -180,7 +191,7 @@ namespace myDoctor.Controllers
             }
             var ketQua = from a in data.KetQuaKhams
                          join b in data.LichKhams on a.idDatLich equals b.idDatLich
-                         join c in data.BacSis on b.idBacSi equals c.idBacSi                      
+                         join c in data.BacSis on b.idBacSi equals c.idBacSi
                          where a.idDatLich == id && a.idDatLich == b.idDatLich && c.idBacSi == b.idBacSi
                          select new KetQuaKhamViewModel
                          {
@@ -191,11 +202,121 @@ namespace myDoctor.Controllers
                              ketqua = a.ketqua,
                              hdthuoc = a.hdthuoc,
                              tienkham = a.tienkham,
-                             ChuyenKhoa = c.HocVi.ChuyenKhoa, 
+                             ChuyenKhoa = c.HocVi.ChuyenKhoa,
                          };
-            
+
             return View(ketQua);
         }
+        public ActionResult chitietbs(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            var account = from p in data.BacSis where p.idBacSi == id select p;
+            return View(account);
+        }
+
+        [HttpGet]
+        public ActionResult thembacsi()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            
+             ViewBag.Hocvi= new SelectList(data.HocVis.ToList().OrderBy(n => n.idHocVi), "idHocVi", "HocVi1");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult thembacsi(FormCollection collection, BacSi bs)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            var sdt = collection["sdt"];
+            var hoten = collection["ten"];
+            var chucvu = collection["chucvu"];
+            var hocvi = collection["hocvi"];
+
+            if (sdt == null || hoten == null || chucvu == null)
+            {
+                ViewData["Loi1"] = "Vui lòng nhập đủ thông tin";
+                return this.View();
+            }
+            else
+            {
+                if (sdt.Length < 10)
+                {
+                    ViewData["Loi2"] = "Vui lòng nhập đúng số điện thoại";
+                    return this.View();
+                }
+               
+                    try
+                {
+                        bool quyen = Boolean.Parse(chucvu);
+                        int hocvii = int.Parse(hocvi);
+                        bs.sdt = sdt;
+                        bs.tenbs = hoten;
+                        bs.quyen = quyen;
+                        bs.idHocVi = hocvii;
+                        bs.passbs = "bs123456";
+                        data.BacSis.Add(bs);
+                        data.SaveChanges();
+                        return RedirectToAction("bacsi", "admin");
+                    }
+                    catch
+                    {
+                        ViewData["Loi1"] = "Vui lòng thử lại";
+                        return this.View();
+                    }
+                
+            }
+
+            return View();
+        }
+
+        public ActionResult xoabacsi(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            BacSi bacsi = data.BacSis.SingleOrDefault(n => n.idBacSi == id);
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
+            if (bacsi.idBacSi == accountcheck.idBacSi)
+            {
+                ViewData["Loi0"] = "Không thể xóa tài khoản đang đăng nhập";
+                return RedirectToAction("bacsi", "admin");
+            }
+            data.BacSis.Remove(bacsi);
+            data.SaveChanges();
+            return RedirectToAction("bacsi", "admin");
+        }
+        public ActionResult Resetmatkhau(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            BacSi bacsi = data.BacSis.SingleOrDefault(n => n.idBacSi == id);
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
+            if (bacsi.idBacSi == accountcheck.idBacSi)
+            {
+                ViewData["Loi0"] = "Không thể Reset mật khẩu tài khoản đang đăng nhập";
+                return RedirectToAction("bacsi", "admin");
+            }
+            var accChange = data.BacSis.Where(s => s.idBacSi ==id).First<BacSi>();
+            accChange.passbs = "bs123456";
+            data.SaveChanges();
+            return RedirectToAction("bacsi", "admin");
+        }
+        
 
         public ActionResult hosoKhachHang(int id)
         {
@@ -204,7 +325,7 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "admin");
             }
 
-           
+
 
             return View();
         }
@@ -231,7 +352,7 @@ namespace myDoctor.Controllers
                 var ketqua = collection["ketqua"];
                 var hdThuoc = collection["hdthuoc"];
                 var phiKham = int.Parse(collection["chiphi"]);
-                if(ketqua == null || hdThuoc == null || idLichKham == null || phiKham == null)
+                if (ketqua == null || hdThuoc == null || idLichKham == null || phiKham == null)
                 {
                     ViewData["Loi0"] = "Vui lòng điền đầy đủ thông tin";
                 }
@@ -248,12 +369,77 @@ namespace myDoctor.Controllers
                     data.SaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewData["Loi0"] = "Vui lòng điền đầy đủ thông tin";
             }
 
             return RedirectToAction("lichkham", "admin");
+        }
+
+        public ActionResult xemAnhThongTinBenh(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            var lichkham = from s in data.LichKhams where s.idDatLich == id select s;
+            return View(lichkham.Single());
+        }
+
+
+        public ActionResult doiMatKhau()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult doiMatKhau(FormCollection collection)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            BacSi accCheck = Session["tkBacSi"] as BacSi;
+
+            var oldpass = collection["oldpass"];
+            var newpass = collection["newpass"];
+            var repass = collection["repass"];
+
+            if (newpass.Length < 8 || newpass.Length > 35)
+            {
+                ViewData["Loi2"] = "Mật khẩu mới phải lớn hơn 8 và bé hơn 35 kí tự";
+                return this.View();
+            }
+
+            if (oldpass.Equals(accCheck.passbs))
+            {
+                if (newpass.Equals(repass))
+                {
+
+
+                    var accChange = data.BacSis.Where(s => s.idBacSi == accCheck.idBacSi).First<BacSi>();
+                    accChange.passbs = newpass;
+                    data.SaveChanges();
+                    return RedirectToAction("login", "admin");
+                }
+                else
+                {
+                    ViewData["Loi1"] = "Mật khẩu xác nhận không chính xác";
+
+                }
+            }
+            else
+            {
+                ViewData["Loi0"] = "Mật khẩu không chính xác";
+            }
+
+            return this.View();
         }
     }
 }
