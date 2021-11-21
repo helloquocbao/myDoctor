@@ -70,6 +70,8 @@ namespace myDoctor.Controllers
                             ViewData["Loi1"] = "Vui lòng chọn thời gian lớn hơn thời gian hiện tại 2 giờ";
                             return View();
                         }
+                        
+                        
                         dl.idBacSi = idbs;
                         dl.hoten = hoten;
                         dl.idKhachHang = idkh;
@@ -78,7 +80,10 @@ namespace myDoctor.Controllers
                         dl.anhchitiet = anh;
                         data.LichKhams.Add(dl);
                         dl.tinhTrang = false;
+
+                       
                         data.SaveChanges();
+
 
                         ViewData["Loi2"] = "Đặt lịch thành công, bạn có thể kiểm tra trong thông tin cá nhân";
                         return Redirect("~/user/lichkham");
@@ -196,6 +201,8 @@ namespace myDoctor.Controllers
                     
                     data.KhachHangs.Add(kh);
                     data.ThanNhans.Add(tn);
+
+                    
                     data.SaveChanges();
                     return RedirectToAction("login");
                 }

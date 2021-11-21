@@ -3,6 +3,7 @@ using myDoctor.Models.ViewModel;
 using System;
 
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -155,7 +156,69 @@ namespace myDoctor.Controllers
             return RedirectToAction("thannhan", "user");
         }
 
-        public ActionResult nguoibenh()
+        [HttpGet]
+        public ActionResult hosoKhachHang()
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            KhachHang accountcheck = Session["taikhoan"] as KhachHang;
+            int check = data.benhAns.Where(n => n.idKhachHang == accountcheck.idKhachHang).Count();
+            if ( check == 0)
+            {
+                benhAn bn = new benhAn();
+                bn.idKhachHang = accountcheck.idKhachHang;
+                bn.mota = "Vui lòng điền vào đây";
+                data.benhAns.Add(bn);
+                data.SaveChanges();
+                return RedirectToAction("hosoKhachHang", "user");
+            }
+            else
+            {
+                return View(data.benhAns.Where(s=>s.idKhachHang== accountcheck.idKhachHang).Single());
+            }
+           
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult hosoKhachHang(FormCollection collection, HttpPostedFileBase fileUpload)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            KhachHang kh = Session["taikhoan"] as KhachHang;                     
+            var mota = collection["mota"];
+            string anh;
+            if (fileUpload == null)
+            {
+                anh = null;
+                ViewData["Loi0"] = "Vui lòng điền đầy đủ thông tin";
+                return RedirectToAction("hosoKhachHang", "user");
+            }
+            else
+            {
+                string strDateTime = System.DateTime.Now.ToString("ddMMyyyyHHMMss");
+                string path = Path.Combine(Server.MapPath("~/HinhBenhAn/"), strDateTime + Path.GetFileName(fileUpload.FileName));
+                anh = strDateTime + Path.GetFileName(fileUpload.FileName);
+                fileUpload.SaveAs(path);
+            }
+            
+               
+                 var hoso = data.benhAns.Where(s => s.idKhachHang == kh.idKhachHang).First<benhAn>();
+                 hoso.urlanh = anh;
+                 hoso.mota = mota;
+               
+                 data.SaveChanges();
+
+
+            return RedirectToAction("hosoKhachHang", "user");
+        }
+
+            public ActionResult nguoibenh()
         {
             if (Session["taikhoan"] == null)
             {

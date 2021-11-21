@@ -13,14 +13,30 @@ namespace myDoctor.Controllers
     {
         // GET: Admin
         myDoctorEntities3 data = new myDoctorEntities3();
+
         public ActionResult Index()
         {
             if (Session["tkBacSi"] == null)
             {
                 return RedirectToAction("login", "admin");
             }
-            return View();
+            int countKH = (from a in data.KhachHangs select a).Count();
+            int countLK = (from a in data.LichKhams where a.ngaydat == DateTime.Today select a).Count();
+            int countDaKham = (from a in data.LichKhams where a.ngaydat == DateTime.Today && a.tinhTrang == true select a).Count();
+            int countChKham = (from a in data.LichKhams where a.ngaydat == DateTime.Today && a.tinhTrang == false select a).Count();
+            int countAdmin = (from a in data.BacSis select a).Count();
+            BacSi accountcheck = Session["tkBacSi"] as BacSi;
+            ViewBag.khachang = countKH;
+            ViewBag.lichkham = countLK;
+            ViewBag.dakham = countDaKham;
+            ViewBag.chkham = countChKham;
+            ViewBag.nhanvien = countAdmin;
+
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now ).ToList());
         }
+
+
+    
 
         public ActionResult bacsi()
         {

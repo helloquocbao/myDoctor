@@ -850,12 +850,14 @@
     <Content Include="Views\Admin\lichdakham.cshtml" />
     <Content Include="Views\Admin\chitietbs.cshtml" />
     <Content Include="Views\Admin\thembacsi.cshtml" />
+    <Content Include="Views\user\hosoKhachHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\assets\plugins\" />
     <Folder Include="HinhAnh\" />
     <Folder Include="hinhbacsi\" />
+    <Folder Include="HinhBenhAn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
