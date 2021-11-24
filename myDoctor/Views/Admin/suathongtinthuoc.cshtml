@@ -1,0 +1,53 @@
+﻿@model IEnumerable<myDoctor.Models.Thuoc>
+
+@{
+    ViewBag.Title = "suathongtinthuoc";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+
+
+<form class="row contact_form" action="/admin/suathongtinthuoc" method="post" novalidate="novalidate" style="width:auto; height:auto; margin-top:140px; margin-left:340px; margin-right:300px">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModal-label">Sửa thông tin thuốc</h4>
+                <label style="color:red"> @ViewData["Loi1"]</label>
+                <div>
+                    @foreach (var i in Model)
+                    {
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID thuốc</label>
+                            <input type="text" value="@i.idthuoc" readonly required="" class="form-control" id="id" name="id" />
+
+                        </div>
+                        <div class="form-group">
+                            <label>Tên loại thuốc</label>
+                            <input type="text" value="@i.tenthuoc" required="" class="form-control" id="name" name="name" />
+
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả</label>
+                            <input type="text" value="@i.mota" required="" class="form-control" id="mota" name="mota" />
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                        <a class="btn btn-default" href="~/admin/thuoc" role="button">Hủy</a>
+
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

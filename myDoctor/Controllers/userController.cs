@@ -24,15 +24,56 @@ namespace myDoctor.Controllers
 
         }
 
+        [HttpGet]
         public ActionResult account()
         {
             if (Session["taikhoan"] == null)
             {
                 return RedirectToAction("login", "home");
             }
+           
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult account(FormCollection collection)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            var account = from p in data.KhachHangs where p.idKhachHang == accountcheck.idKhachHang select p;
-            return View(account.Single());
+            var hoten = collection["hoten"];
+            var email = collection["email"];
+            var diachi = collection["diachi"];
+            var pass = collection["pass"];
+            if (hoten == "" || diachi == "" || pass == "")
+            {
+                ViewData["Loi0"] = "Vui lòng điền đủ thông tin";
+                return this.View();
+            }
+            if(hoten != "" && diachi != "" && pass != "")
+            {
+                if (pass.Equals(accountcheck.passkh))
+                {
+                    var accChange = data.KhachHangs.Where(s => s.idKhachHang == accountcheck.idKhachHang).First<KhachHang>();
+                    accChange.diachi = diachi;
+                    accChange.tenkh = hoten;
+                    accChange.email = email;
+                    data.SaveChanges();
+                    return RedirectToAction("account", "user");
+                }
+                else
+                {
+                    ViewData["Loi1"] = "Mật khẩu không chính xác";
+                    return this.View();
+                }
+
+
+            }
+
+            return View();
         }
 
         public ActionResult lichkham()

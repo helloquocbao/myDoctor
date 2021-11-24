@@ -6,24 +6,25 @@
 }
 
 
-    <div class="container-fluid">
-        <div class="row bg-title">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Thông tin cá nhân</h4>
-            </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <a href="~/home/index" target="_blank"
-                   class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
-                   Quốc Bảo- Health
-                </a>
-                <ol class="breadcrumb">
-                    <li><a href="#">Cá nhân</a></li>
-                    <li class="active">Thông tin cá nhân</li>
-                </ol>
-            </div>
+<div class="container-fluid">
+
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thông tin cá nhân</h4>
         </div>
-        <!-- /.row -->
-        <!-- .row -->
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <a href="~/home/index" target="_blank"
+               class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
+                Quốc Bảo- Health
+            </a>
+            <ol class="breadcrumb">
+                <li><a href="#">Cá nhân</a></li>
+                <li class="active">Thông tin cá nhân</li>
+            </ol>
+        </div>
+    </div>
+
+   
         <div class="row">
             <div class="col-md-4 col-xs-12">
                 <div class="white-box">
@@ -35,68 +36,80 @@
                                     <img src="~/HinhAnh/avatar.jpg"
                                          class="thumb-lg img-circle" alt="img">
                                 </a>
-                                <h4 class="text-white">@Model.tenkh</h4>
-                                <h5 class="text-white">@Model.email</h5>
+                                @using myDoctor.Models
+                                @{
+                                    KhachHang kh = (KhachHang)Session["taikhoan"];
+                                }
+                                    <h4 class="text-white">@kh.tenkh</h4>
+                                    <h5 class="text-white">@kh.email</h5>
+                                
                             </div>
                         </div>
                     </div>
-                    <div class="user-btm-box">
-                       
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-8 col-xs-12">
-                <div class="white-box">
-                    <form class="form-horizontal form-material">
-                        <div class="form-group">
-                            <label class="col-md-12">Họ và tên</label>
-                            <div class="col-md-12">
-                                <input type="text" name="hoten" placeholder="@Model.tenkh"
-                                       class="form-control form-control-line">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="example-email" class="col-md-12">Email</label>
-                            <div class="col-md-12">
-                                <input type="email"   placeholder="@Model.email" name="email"
-                                       class="form-control form-control-line" >
-                            </div>
-                        </div>
-                      
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-12">Số điện thoại</label>
-                            <div class="col-md-12">
-                                <input type="number" readonly name="sdt" placeholder="@Model.sdt"
-                                       class="form-control form-control-line">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-12">Địa chỉ</label>
-                            <div class="col-md-12">
-                                <textarea rows="5" placeholder="@Model.sdt"name="mota" class="form-control form-control-line"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="example-email" class="col-md-12">Mật khẩu</label>
-                            <div class="col-md-12">
-                                <input type="password" 
-                                       class="form-control form-control-line" 
-                                       dirname="pass">
-                            </div>
-                        </div>  
+                  <form class="row contact_form" action="/user/account" method="post" novalidate="novalidate">
               
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <br />
-                                <button class="btn btn-success">Cập nhập thông tin</button>
-                            </div>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                  
+                      <div class="form-group">
+                          <label style="color:red"> @ViewData["Loi0"]</label>
+                          <label class="col-md-12">Họ và tên</label>
+                          <div class="col-md-12">
+                              <input type="text" name="hoten" placeholder="@kh.tenkh"
+                                     class="form-control form-control-line">
+                          </div>
+                      </div>
+                    <div class="form-group">
+                        <label for="example-email" class="col-md-12">Email</label>
+                        <div class="col-md-12">
+                            <input type="email" placeholder="@kh.email" name="email"
+                                   class="form-control form-control-line">
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-12">Số điện thoại</label>
+                        <div class="col-md-12">
+                            <p>
+                                @kh.sdt
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">Địa chỉ</label>
+                        <div class="col-md-12">
+                            <textarea rows="5" placeholder="@kh.diachi" name="diachi" class="form-control form-control-line"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="example-email" class="col-md-12">Mật khẩu</label>
+                        <label style="color:red"> @ViewData["Loi1"]</label>
+                        <div class="col-md-12">
+                            <input type="password"
+                                   class="form-control form-control-line"
+                                   name="pass"
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <br />
+                            <button type="submit" class="btn btn-success">Cập nhập thông tin</button>
+                        </div>
+                    </div>
+                </form>
             </div>
+
+
         </div>
-        <!-- /.row -->
-    </div>
-    Ư
+   
+    <!-- /.row -->
+</div>
 

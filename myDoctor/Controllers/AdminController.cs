@@ -314,6 +314,7 @@ namespace myDoctor.Controllers
             data.SaveChanges();
             return RedirectToAction("bacsi", "admin");
         }
+
         public ActionResult Resetmatkhau(int id)
         {
             if (Session["tkBacSi"] == null)
@@ -456,6 +457,104 @@ namespace myDoctor.Controllers
             }
 
             return this.View();
+        }
+
+
+        public ActionResult thuoc()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            return View(data.Thuocs.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult themmotthuoc()
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult themmotthuoc(FormCollection collection, Thuoc thuoc)
+        {
+            var name = collection["name"];
+            var mota = collection["mota"];
+            if(name == "" || mota == "")
+            {
+                ViewData["Loi1"] = "Vui lòng điền đầy đủ thông tin";
+                return this.View();
+            }
+            else
+            {
+                thuoc.tenthuoc = name;
+                thuoc.mota = mota;
+                data.Thuocs.Add(thuoc);
+                data.SaveChanges();
+                return RedirectToAction("thuoc", "admin");
+            }
+
+            return View();
+        }
+
+        public ActionResult xoathuoc(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            Thuoc thuoc = data.Thuocs.SingleOrDefault(n => n.idthuoc == id);
+            try { 
+            data.Thuocs.Remove(thuoc);
+            data.SaveChanges();
+            }catch(Exception ex)
+            {
+                ViewData["Loi1"] = "Xóa lỗi, vui lòng thử lại";
+            }
+            return RedirectToAction("thuoc", "admin");
+        }
+
+        [HttpGet]
+        public ActionResult suathongtinthuoc(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            var thuoc = from a in data.Thuocs where a.idthuoc == id select a;
+            return View(thuoc);              
+        }
+
+        public ActionResult suathongtinthuoc(FormCollection collection)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            var name = collection["name"];
+            var mota = collection["mota"];
+            int id =int.Parse(collection["id"]);
+            if (name == "" || mota=="")
+            {
+                ViewData["Loi1"] = "vui lòng điền đủ thông tin";
+                return RedirectToAction("thuoc", "admin");
+            }
+            else
+            {
+                var thuoc = data.Thuocs.Where(s => s.idthuoc == id).First<Thuoc>();
+                thuoc.tenthuoc = name;
+                thuoc.mota = mota;
+                data.SaveChanges();
+                return RedirectToAction("thuoc", "admin");
+            }
+            return RedirectToAction("thuoc", "admin");
         }
     }
 }
