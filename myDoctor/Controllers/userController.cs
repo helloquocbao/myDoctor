@@ -352,5 +352,18 @@ namespace myDoctor.Controllers
                                                
             return this.View();
         }
+
+        public ActionResult donthuoc(int id)
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            var danhsach = from a in data.ChiTietThuocs where a.idKetQua == id select a;
+
+
+            return View(data.ChiTietThuocs.Where(a => a.idKetQua == id).ToList());
+
+        }
     }
 }

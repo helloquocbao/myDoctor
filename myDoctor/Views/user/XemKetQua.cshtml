@@ -26,7 +26,7 @@
                             KQ2<span class="subhead">@Model.idKetQua</span>
 
                         </div>
-                       
+
                         <div class="form-group">
                             <label style="font-size:15px">Kết quả khám: </label>
                             @Model.ketqua
@@ -47,6 +47,11 @@
                             <label style="font-size:15px">Hướng dẫn uống thuốc: </label>
                             @Model.hdthuoc
                         </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">Hướng dẫn uống thuốc: </label>
+                            <a href="@Url.Action("donthuoc","user",new {id =Model.idKetQua})"><label style="color:red"> Xem </label></a>
+                        </div>
+                        
                     </div>
 
                 </div>

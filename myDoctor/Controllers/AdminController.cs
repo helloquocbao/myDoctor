@@ -556,5 +556,77 @@ namespace myDoctor.Controllers
             }
             return RedirectToAction("thuoc", "admin");
         }
+        
+        public ActionResult check(int id)
+        {
+            int checka = data.ChiTietThuocs.Where(a => a.idKetQua == id).Count();
+            if (checka > 0)
+            {
+                return Redirect("/admin/danhsachthuoc/"+id);
+            }
+            else
+            {
+                return Redirect("/admin/themthuoc/"+id);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult themThuoc(int id)
+        {
+            ViewBag.idketqua = id;
+                ViewBag.thuoc = new SelectList(data.Thuocs.ToList().OrderBy(n => n.idthuoc), "idthuoc", "tenthuoc");
+                return View();
+           
+        }
+        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult themThuoc(FormCollection collection, ChiTietThuoc ctThuoc)
+        {
+            var id = collection["id"];
+            int[] ten = new int[6];
+            for (int i=0; i<6; i++)
+            {
+               
+                    ten[i] =int.Parse(collection["thuoc"+i+""]);
+                
+            }
+
+            int[] soluong = new int[6];
+            for (int i = 0; i <6; i++)
+            {
+                try
+                {
+                    soluong[i] = int.Parse(collection["soluong" + i + ""]);
+                }
+                catch (Exception ex)
+                {
+                    soluong[i] = 0;
+                }
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                if(soluong[i] > 0)
+                {
+                    ctThuoc.idKetQua = int.Parse(id);
+                    ctThuoc.idthuoc = ten[i];
+                    ctThuoc.soluong = soluong[i];
+                    data.ChiTietThuocs.Add(ctThuoc);
+                    data.SaveChanges();
+                }
+            }
+            return Redirect("/admin/danhsachthuoc/" + id);
+        }
+
+        public ActionResult dachsachthuoc(int id)
+        {
+            var danhsach = from a in data.ChiTietThuocs where a.idKetQua == id select a;
+
+
+            return View(data.ChiTietThuocs.Where(a => a.idKetQua == id).ToList());
+
+        }
     }
 }

@@ -20,7 +20,7 @@
 
                 <div>
                     <div class="modal-body" style="padding:30px">
-                       
+
                         @foreach (var item in Model)
                         {
                             <div class="form-group">
@@ -50,6 +50,12 @@
                             <div class="form-group">
                                 <label>Chuyên khoa: </label>
                                 <label>@item.ChuyenKhoa </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Danh sách thuốc: </label>
+                              
+                                        <a href="@Url.Action("check","admin",new {id =item.idKetQua})"><label style="color:red"> Xem </label></a>
+                                   
                             </div>
                         }
                     </div>

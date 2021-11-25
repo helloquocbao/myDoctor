@@ -854,6 +854,9 @@
     <Content Include="Views\Admin\thuoc.cshtml" />
     <Content Include="Views\Admin\themmotthuoc.cshtml" />
     <Content Include="Views\Admin\suathongtinthuoc.cshtml" />
+    <Content Include="Views\Admin\themThuoc.cshtml" />
+    <Content Include="Views\Admin\danhsachthuoc.cshtml" />
+    <Content Include="Views\user\donthuoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<myDoctor.Models.ChiTietThuoc>
+
+@{
+    ViewBag.Title = "danhsachthuoc";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+
+<div class="row contact_form" novalidate="novalidate" style="width:auto; height:auto; margin-top:100px; margin-left:400px; margin-right:350px">
+
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" r data-dismiss="modal" aria-hidden="true">
+
+                    <a href="~/Admin/lichkham">  &times;</a>
+
+                </button>
+                <h4 class="modal-title" id="myModal-label" style="text-align:center; font-size:30px; font-weight:bold">Danh sách thuốc khách hàng nhận</h4>
+
+                <div>
+                    <div class="modal-body" style="padding:30px">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+
+                                    <th><label style="color:coral; font-size:15px">Tên thuốc</label></th>
+
+                                    <th><label style=" font-size:15px">Số lượng</label></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Model)
+                                {
+                                    <tr class="gradeU">
+
+                                        <td><label style="color: #250630 ">@i.Thuoc.tenthuoc</label></td>
+
+
+                                        <td><label style="color: #250630 ">@i.soluong</label></td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <a href="~/Admin/lichkham">  Quay lại</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

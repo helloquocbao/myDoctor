@@ -70,51 +70,55 @@
                                             Trạng thái
                                         </th>
                                         <th>Kết quả</th>
+                                        <th>Thuốc</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @{int a = 1; }
                                     @foreach (var i in Model)
                                     {
-                                        <tr class="gradeU">
-                                            <td>@a</td>
-                                            <td>@i.ngaydat</td>
-                                            <td>@i.BacSi.tenbs</td>
-                                            <td>@i.hoten</td>
+                                    <tr class="gradeU">
+                                        <td>@a</td>
+                                        <td>@i.ngaydat</td>
+                                        <td>@i.BacSi.tenbs</td>
+                                        <td>@i.hoten</td>
+                                        <td>
+                                            <a href="@Url.Action("xemanhthongtinbenh","admin",new {id =i.idDatLich})" style="color: #B22428 "> @i.trieuchung</a>
+                                        </td>
+                                        @if (i.tinhTrang == true)
+                                        {
                                             <td>
-                                                <a href="@Url.Action("xemanhthongtinbenh","admin",new {id =i.idDatLich})" style="color: #B22428 "> @i.trieuchung</a>
+                                                <label>Đã khám</label>
                                             </td>
-                                            @if (i.tinhTrang == true)
-                                            {
-                                                <td>
-                                                    <label>Đã khám</label>
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    Chưa khám
-                                                </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                Chưa khám
+                                            </td>
 
-                                            }
+                                        }
 
-                                            @if (i.tinhTrang == true)
-                                            {
-                                                <td>
-                                                    <a href="@Url.Action("xemketqua","admin",new {id =i.idDatLich })">Xem kết quả</a>
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    <a href="@Url.Action("ghiketqua","admin",new {id =i.idDatLich })">Ghi kết quả</a>
+                                        @if (i.tinhTrang == true)
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("xemketqua","admin",new {id =i.idDatLich })">Xem kết quả</a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("ghiketqua","admin",new {id =i.idDatLich })">Ghi kết quả</a>
 
-                                                </td>
+                                            </td>
 
-                                            }
+                                        }
 
-
-                                        </tr>
+                                        <td>
+                                            <a href="@Url.Action("themthuoc","admin",new {id =i.idDatLich })">Thuốc</a>
+                                        </td>
+                                    </tr>
+                                        
                                         a++;
                                     }
                                 </tbody>
