@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities3">
+  <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities4">
     <EntitySetMapping Name="BacSis">
       <EntityTypeMapping TypeName="myDoctorModel.BacSi">
         <MappingFragment StoreEntitySet="BacSi">

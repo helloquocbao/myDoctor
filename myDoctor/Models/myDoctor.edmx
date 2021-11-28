@@ -115,7 +115,7 @@
           </Key>
           <Property Name="idthuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tenthuoc" Type="nvarchar" MaxLength="30" />
-          <Property Name="mota" Type="nvarchar" MaxLength="60" />
+          <Property Name="mota" Type="nvarchar" MaxLength="320" />
         </EntityType>
         <Association Name="FK__BacSi__idHocVi__2B3F6F97">
           <End Role="HocVi" Type="Self.HocVi" Multiplicity="0..1" />
@@ -406,7 +406,7 @@
           </Key>
           <Property Name="idthuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenthuoc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="mota" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="mota" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietThuocs" Relationship="Self.FK__ChiTietTh__idthu__3A81B327" FromRole="Thuoc" ToRole="ChiTietThuoc" />
         </EntityType>
         <Association Name="FK__BacSi__idHocVi__2B3F6F97">
@@ -517,7 +517,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="myDoctorEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="myDoctorEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BacSis" EntityType="Self.BacSi" />
           <EntitySet Name="benhAns" EntityType="Self.benhAn" />
           <EntitySet Name="chitietThanNhans" EntityType="Self.chitietThanNhan" />
@@ -571,7 +571,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities3">
+        <EntityContainerMapping StorageEntityContainer="myDoctorModelStoreContainer" CdmEntityContainer="myDoctorEntities4">
           <EntitySetMapping Name="BacSis">
             <EntityTypeMapping TypeName="myDoctorModel.BacSi">
               <MappingFragment StoreEntitySet="BacSi">

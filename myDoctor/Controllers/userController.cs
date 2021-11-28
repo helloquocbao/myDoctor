@@ -16,7 +16,7 @@ namespace myDoctor.Controllers
 
 
         // GET: user
-        myDoctorEntities3 data = new myDoctorEntities3();
+        myDoctorEntities4 data = new myDoctorEntities4();
         public ActionResult logout()
         {
             Session["taikhoan"] = null;

@@ -11,7 +11,7 @@ namespace myDoctor.Controllers
 {
     public class HomeController : Controller
     {
-        myDoctorEntities3 data = new myDoctorEntities3();
+        myDoctorEntities4 data = new myDoctorEntities4();
         
 
         [HttpGet]

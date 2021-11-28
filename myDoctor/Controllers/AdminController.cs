@@ -12,7 +12,7 @@ namespace myDoctor.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        myDoctorEntities3 data = new myDoctorEntities3();
+        myDoctorEntities4 data = new myDoctorEntities4();
 
         public ActionResult Index()
         {
@@ -31,6 +31,10 @@ namespace myDoctor.Controllers
             ViewBag.dakham = countDaKham;
             ViewBag.chkham = countChKham;
             ViewBag.nhanvien = countAdmin;
+            if(accountcheck.quyen == false)
+            {
+                return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.ngaydat > DateTime.Now).ToList());
+            }
 
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now ).ToList());
         }
@@ -173,7 +177,10 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "admin");
             }
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
-
+            if (accountcheck.quyen == false)
+            {
+                return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.ngaydat > DateTime.Now && a.tinhTrang == false).ToList());
+            }
 
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now && a.tinhTrang == false).ToList());
         }
@@ -184,7 +191,10 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "admin");
             }
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
-
+            if(accountcheck.quyen == false)
+            {
+                return View(data.LichKhams.Where(a => a.tinhTrang == true).ToList());
+            }
 
             return View(data.LichKhams.Where(a => a.tinhTrang == true && a.idBacSi == accountcheck.idBacSi).ToList());
         }
@@ -560,13 +570,14 @@ namespace myDoctor.Controllers
         public ActionResult check(int id)
         {
             int checka = data.ChiTietThuocs.Where(a => a.idKetQua == id).Count();
-            if (checka > 0)
+            if (checka == 0)
             {
-                return Redirect("/admin/danhsachthuoc/"+id);
+                return Redirect("/admin/themthuoc/" + id);
             }
             else
             {
-                return Redirect("/admin/themthuoc/"+id);
+                return Redirect("/admin/dachsachthuoc/" + id);
+               
             }
         }
 
@@ -617,7 +628,8 @@ namespace myDoctor.Controllers
                     data.SaveChanges();
                 }
             }
-            return Redirect("/admin/danhsachthuoc/" + id);
+            
+            return Redirect("/admin/dachsachthuoc/" + id);
         }
 
         public ActionResult dachsachthuoc(int id)

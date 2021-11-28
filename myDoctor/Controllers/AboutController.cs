@@ -10,7 +10,7 @@ namespace myDoctor.Controllers
     public class AboutController : Controller
     {
 
-        myDoctorEntities3 data = new myDoctorEntities3();
+        myDoctorEntities4 data = new myDoctorEntities4();
         private List<BacSi> listBacSi()
         {
             return data.BacSis.ToList();

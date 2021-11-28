@@ -110,7 +110,7 @@
     </Key>
     <Property Name="idthuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tenthuoc" Type="nvarchar" MaxLength="30" />
-    <Property Name="mota" Type="nvarchar" MaxLength="60" />
+    <Property Name="mota" Type="nvarchar" MaxLength="320" />
   </EntityType>
   <Association Name="FK__BacSi__idHocVi__2B3F6F97">
     <End Role="HocVi" Type="Self.HocVi" Multiplicity="0..1" />

@@ -127,7 +127,7 @@
     </Key>
     <Property Name="idthuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="tenthuoc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="mota" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="mota" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTietThuocs" Relationship="Self.FK__ChiTietTh__idthu__3A81B327" FromRole="Thuoc" ToRole="ChiTietThuoc" />
   </EntityType>
   <Association Name="FK__BacSi__idHocVi__2B3F6F97">
@@ -238,7 +238,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="myDoctorEntities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="myDoctorEntities4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BacSis" EntityType="Self.BacSi" />
     <EntitySet Name="benhAns" EntityType="Self.benhAn" />
     <EntitySet Name="chitietThanNhans" EntityType="Self.chitietThanNhan" />

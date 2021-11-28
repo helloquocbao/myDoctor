@@ -11,8 +11,7 @@ namespace myDoctor.Models
 {
     using System;
     using System.Collections.Generic;
-
-
+    
     public partial class BacSi
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,7 +23,6 @@ namespace myDoctor.Models
         public int idBacSi { get; set; }
         public string passbs { get; set; }
         public Nullable<int> idHocVi { get; set; }
-      
         public string tenbs { get; set; }
         public string urlanh { get; set; }
         public string sdt { get; set; }
