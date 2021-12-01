@@ -83,7 +83,18 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "home");
             }
             KhachHang accountcheck = Session["taikhoan"] as KhachHang;
-            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idKhachHang == accountcheck.idKhachHang).ToList());
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idKhachHang == accountcheck.idKhachHang && a.tinhTrang ==false && a.ngaydat >=DateTime.Now).ToList());
+            ;
+        }
+
+        public ActionResult lichkhamroi()
+        {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            KhachHang accountcheck = Session["taikhoan"] as KhachHang;
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idKhachHang == accountcheck.idKhachHang && a.tinhTrang==true).ToList());
             ;
         }
 

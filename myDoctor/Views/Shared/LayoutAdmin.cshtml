@@ -106,6 +106,16 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Quản lý<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    @{ DateTime test = DateTime.Now;
+                                        int month = test.Month;
+                                    }
+                                    @if (bs.quyen == null)
+                                    {
+                                    <a href="~/admin/thongke/@month">Thống kê</a>
+                                    }
+                                    
+                                </li>
+                                <li>
                                     <a href="~/admin/taikhoanDK">Khách hàng</a>
                                 </li>
                                 <li>

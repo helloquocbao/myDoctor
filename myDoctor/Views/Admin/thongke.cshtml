@@ -1,6 +1,6 @@
-﻿    
+﻿
 @{
-    ViewBag.Title = "lichdakham";
+    ViewBag.Title = "thongke";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Bác sĩ</h1>
+                <h1 class="page-header">Doanh thu hiện tại của tháng</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -18,8 +18,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" id="menu">
                         <ul>
-                            <li style=" display: inline-block"><a href="~/admin/lichkham">Chưa khám</a></li>
-                            <li style=" display: inline-block"><a href="~/admin/lichdakham">Đã khám</a></li>
+                            @if (ViewBag.today != 1)
+                            {
+                                <li style=" display: inline-block"><a href="~/admin/thongke/@ViewBag.before">@ViewBag.before</a></li>
+                            }
+
+
+                            <li style=" display: inline-block"><a href="~/admin/thongke/@ViewBag.today"><label style="font-size:15px; color:darkorange; font-weight:bold">@ViewBag.today</label></a></li>
+                            @if (ViewBag.today != 12)
+                            {
+                                <li style=" display: inline-block"><a href="~/admin/thongke/@ViewBag.next"> @ViewBag.next</a></li>
+                            }
+
                         </ul>
                     </div>
                     <style>
@@ -69,10 +79,9 @@
                                         <th>Tên người khám</th>
                                         <th>Triệu chứng</th>
                                         <th>
-                                            Trạng thái
+                                          Chi tiết
                                         </th>
-                                        <th>Kết quả</th>
-                                     
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,47 +93,17 @@
                                         <td>@i.ngaydat</td>
                                         <td>@i.BacSi.tenbs</td>
                                         <td>@i.hoten</td>
-                                        <td>
-                                            <a href="@Url.Action("xemanhthongtinbenh","admin",new {id =i.idDatLich})" style="color: #B22428 "> @i.trieuchung</a>
-                                        </td>
-                                        @if (i.tinhTrang == true)
-                                        {
-                                            <td>
-                                                <label>Đã khám</label>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                Chưa khám
-                                            </td>
-
-                                        }
-
-                                        @if (i.tinhTrang == true)
-                                        {
-                                            <td>
-                                                <a href="@Url.Action("xemketqua","admin",new {id =i.idDatLich })">Xem kết quả</a>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <a href="@Url.Action("ghiketqua","admin",new {id =i.idDatLich })">Ghi kết quả</a>
-
-                                            </td>
-
-                                        }
-
-                                       
-                                        
+                                        <td>@i.trieuchung</td>
+                                        <td> <a href="@Url.Action("xemketqua","admin",new {id =i.idDatLich })">Xem kết quả</a></td>
                                     </tr>
-                                       
                                         a++;
+                                       
+
                                     }
 
                                 </tbody>
                             </table>
+                            <span>Doanh thu của tháng: <label> @ViewBag.vienphi</label></span>
                         </div>
                         <!-- /.table-responsive -->
 

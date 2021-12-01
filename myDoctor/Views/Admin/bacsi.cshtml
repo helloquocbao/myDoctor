@@ -18,7 +18,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" id="menu">
                         <ul>
+                            @using myDoctor.Models
+                            @{
+                                BacSi bs = (BacSi)Session["tkBacSi"];
+                            }
+                            @if (bs.quyen == null)
+                            {
                             <li style=" display: inline-block"><a href="~/admin/thembacsi">Thêm bác sĩ</a></li>
+                            }
+                            
 
                         </ul>
                     </div>
@@ -89,10 +97,13 @@
                                             <td class="center">Y tá</td>
                                         }
                                         <td class="center">@i.HocVi.HocVi1</td>
+                                        @if (bs.quyen == null)
+                                        {
+                                            <td><a style="color: #154713; font-weight:normal" href="@Url.Action("chitietbs","admin",new {id =i.idBacSi})">Xem</a></td>
+                                            <td><a href="@Url.Action("Resetmatkhau","admin",new {id =i.idBacSi})">Thay đổi</a></td>
+                                            <td><a style="color:red;" href="@Url.Action("xoabacsi","admin",new {id =i.idBacSi})">Xóa tài khoản</a></td>
+                                        }
 
-                                        <td><a style="color: #154713; font-weight:normal" href="@Url.Action("chitietbs","admin",new {id =i.idBacSi})">Xem</a></td>
-                                        <td><a href="@Url.Action("Resetmatkhau","admin",new {id =i.idBacSi})">Thay đổi</a></td>
-                                        <td><a style="color:red;" href="@Url.Action("xoabacsi","admin",new {id =i.idBacSi})">Xóa tài khoản</a></td>
                                     </tr>
                                     }
                                 </tbody>

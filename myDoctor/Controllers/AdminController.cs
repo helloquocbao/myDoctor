@@ -184,6 +184,7 @@ namespace myDoctor.Controllers
 
             return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.idBacSi == accountcheck.idBacSi && a.ngaydat > DateTime.Now && a.tinhTrang == false).ToList());
         }
+
         public ActionResult lichdakham()
         {
             if (Session["tkBacSi"] == null)
@@ -196,7 +197,7 @@ namespace myDoctor.Controllers
                 return View(data.LichKhams.Where(a => a.tinhTrang == true).ToList());
             }
 
-            return View(data.LichKhams.Where(a => a.tinhTrang == true && a.idBacSi == accountcheck.idBacSi).ToList());
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat)    .Where(a => a.tinhTrang == true && a.idBacSi == accountcheck.idBacSi).ToList());
         }
 
 
@@ -639,6 +640,36 @@ namespace myDoctor.Controllers
 
             return View(data.ChiTietThuocs.Where(a => a.idKetQua == id).ToList());
 
+        }
+
+        public ActionResult thongke(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            var check = DateTime.Now;
+            var year = check.Year;
+
+            DateTime timenext;
+            if (id == 2)
+            {
+                 timenext = DateTime.Parse("" + year + " - " + id + " - 28 19:04:00.000");
+            }
+            else
+            {
+                 timenext = DateTime.Parse("" + year + " - " + id + " - 30 19:04:00.000");
+            }
+            
+            DateTime time = DateTime.Parse("" + year + " - " + id + " - 01 00:00:00.000");
+           
+            ViewBag.today = id;
+            ViewBag.next = id + 1;
+            ViewBag.before = id - 1;
+            ViewBag.vienphi = data.KetQuaKhams.OrderByDescending(a => a.LichKham.ngaydat).Where(a => a.LichKham.ngaydat >= time && a.LichKham.ngaydat < timenext && a.LichKham.tinhTrang == true).Sum(a=>a.tienkham);
+            return View(data.LichKhams.OrderByDescending(a => a.ngaydat).Where(a => a.ngaydat >= time && a.ngaydat< timenext && a.tinhTrang == true).ToList());
+            
         }
     }
 }
