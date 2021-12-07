@@ -192,7 +192,7 @@ namespace myDoctor.Controllers
                 return RedirectToAction("login", "admin");
             }
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
-            if(accountcheck.quyen == false)
+            if(accountcheck.quyen == null || accountcheck.quyen==false)
             {
                 return View(data.LichKhams.Where(a => a.tinhTrang == true).ToList());
             }
@@ -292,9 +292,13 @@ namespace myDoctor.Controllers
                         bs.tenbs = hoten;
                         bs.quyen = quyen;
                         bs.idHocVi = hocvii;
-                        bs.passbs = "bs123456";
-                        data.BacSis.Add(bs);
-                        data.SaveChanges();
+                        bs.passbs = "Bs@12345";
+                        BacSi accountcheck = Session["tkBacSi"] as BacSi;
+                        if (accountcheck.quyen == null)
+                        {
+                            data.BacSis.Add(bs);
+                            data.SaveChanges();
+                        }
                         return RedirectToAction("bacsi", "admin");
                     }
                     catch
@@ -308,6 +312,29 @@ namespace myDoctor.Controllers
             return View();
         }
 
+        public ActionResult xemthongtin(int id)
+        {
+            if (Session["tkBacSi"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+            var thongtin = from a in data.KhachHangs where a.idKhachHang == id select a;
+        
+           // var test ;
+            var anh = from a in data.benhAns where a.idKhachHang == id select a.urlanh;
+          
+            try
+            {
+                var test = data.benhAns.Where(s => s.idKhachHang == id).First<benhAn>();
+                string url = test.urlanh;
+                ViewBag.anh = url;
+            }
+            catch { }
+
+           
+            return View(thongtin.Single());
+        }
+
         public ActionResult xoabacsi(int id)
         {
             if (Session["tkBacSi"] == null)
@@ -316,13 +343,16 @@ namespace myDoctor.Controllers
             }
             BacSi bacsi = data.BacSis.SingleOrDefault(n => n.idBacSi == id);
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
-            if (bacsi.idBacSi == accountcheck.idBacSi)
+            if (accountcheck.quyen == null)
             {
-                ViewData["Loi0"] = "Không thể xóa tài khoản đang đăng nhập";
-                return RedirectToAction("bacsi", "admin");
+                if (bacsi.idBacSi == accountcheck.idBacSi)
+                {
+                    ViewData["Loi0"] = "Không thể xóa tài khoản đang đăng nhập";
+                    return RedirectToAction("bacsi", "admin");
+                }
+                data.BacSis.Remove(bacsi);
+                data.SaveChanges();
             }
-            data.BacSis.Remove(bacsi);
-            data.SaveChanges();
             return RedirectToAction("bacsi", "admin");
         }
 
@@ -334,10 +364,12 @@ namespace myDoctor.Controllers
             }
             BacSi bacsi = data.BacSis.SingleOrDefault(n => n.idBacSi == id);
             BacSi accountcheck = Session["tkBacSi"] as BacSi;
-            if (bacsi.idBacSi == accountcheck.idBacSi)
-            {
-                ViewData["Loi0"] = "Không thể Reset mật khẩu tài khoản đang đăng nhập";
-                return RedirectToAction("bacsi", "admin");
+           if(accountcheck.quyen == null) {
+                if (bacsi.idBacSi == accountcheck.idBacSi)
+                {
+                    ViewData["Loi0"] = "Không thể Reset mật khẩu tài khoản đang đăng nhập";
+                    return RedirectToAction("bacsi", "admin");
+                }
             }
             var accChange = data.BacSis.Where(s => s.idBacSi ==id).First<BacSi>();
             accChange.passbs = "bs123456";
